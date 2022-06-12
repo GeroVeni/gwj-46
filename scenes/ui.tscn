@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbjvycn6lhst1"]
+
+[ext_resource type="PackedScene" uid="uid://djgkrvvr78s2t" path="res://scenes/ability_indicator.tscn" id="1_mdava"]
+
+[node name="UI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="DashIndicator" parent="." instance=ExtResource( "1_mdava" )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -104.0
+offset_right = 32.0
+offset_bottom = -40.0
+cooldown_timer_path = NodePath("../../GameWorld/Player/DashCooldownTimer")
+ability_name = "Dash"
+cooldown_duration = 4.0
+metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = true

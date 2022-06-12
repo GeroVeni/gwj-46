@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b357rja0bjvbb"]
+
+[ext_resource type="Script" path="res://scenes/mini_orb.gd" id="1_g52ul"]
+[ext_resource type="Texture2D" uid="uid://dhbm42q84bsvc" path="res://assets/Mini_orb_1.png" id="2_lqd7m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t0nlg"]
+radius = 3.0
+
+[node name="MiniOrb" type="AnimatableBody2D"]
+modulate = Color(0.207843, 0.843137, 1, 1)
+collision_layer = 0
+sync_to_physics = false
+script = ExtResource( "1_g52ul" )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( "CircleShape2D_t0nlg" )
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.01, -0.055)
+scale = Vector2(0.00997512, 0.0101414)
+texture = ExtResource( "2_lqd7m" )

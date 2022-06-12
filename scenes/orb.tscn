@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7xsx3t3f6g04"]
+
+[ext_resource type="Script" path="res://scripts/orb.gd" id="1_4p7aa"]
+[ext_resource type="Texture2D" uid="uid://cvako641lsxht" path="res://assets/Orb_1.png" id="2_7os6y"]
+
+[sub_resource type="Curve" id="Curve_75vyr"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="SphereMesh" id="SphereMesh_5l2xp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g1530"]
+
+[sub_resource type="ParticlesMaterial" id="ParticlesMaterial_dwgxo"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 10.0
+emission_ring_radius = 11.0
+emission_ring_inner_radius = 9.0
+particle_flag_disable_z = true
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+angular_velocity_min = 18.52
+angular_velocity_max = 18.52
+orbit_velocity_min = -0.11
+orbit_velocity_max = -0.11
+color = Color(0.0980392, 0.858824, 1, 1)
+hue_variation_min = -0.05
+hue_variation_max = 0.05
+
+[node name="Orb" type="AnimatableBody2D"]
+collision_layer = 0
+sync_to_physics = false
+script = ExtResource( "1_4p7aa" )
+travel_curve = SubResource( "Curve_75vyr" )
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+visible = false
+scale = Vector2(20, 20)
+mesh = SubResource( "SphereMesh_5l2xp" )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( "CircleShape2D_g1530" )
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.25, -0.249999)
+scale = Vector2(0.0199153, 0.0209075)
+texture = ExtResource( "2_7os6y" )
+
+[node name="MiniOrbLaunchTimer" type="Timer" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 40
+process_material = SubResource( "ParticlesMaterial_dwgxo" )

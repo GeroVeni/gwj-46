@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://jbsvo05nuy50"]
+
+[node name="Control" type="ProgressBar"]
+anchor_right = 0.423
+anchor_bottom = 0.063
+offset_right = -0.152008
+offset_bottom = 0.200001
+size_flags_vertical = 1

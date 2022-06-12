@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://cv1meci1g16oa"]
+
+[ext_resource type="PackedScene" uid="uid://bces3yyu57psw" path="res://scenes/player.tscn" id="1_5u4og"]
+[ext_resource type="PackedScene" uid="uid://c7xsx3t3f6g04" path="res://scenes/orb.tscn" id="2_4mtcb"]
+[ext_resource type="Script" path="res://scripts/shake_camera.gd" id="3_w71m5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rmnsr"]
+size = Vector2(224.233, 87.0575)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7k3vr"]
+
+[node name="GameWorld" type="Node2D"]
+position = Vector2(512, 300)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-285.117, -53.5287)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource( "RectangleShape2D_rmnsr" )
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D"]
+scale = Vector2(224.233, 85.0575)
+mesh = SubResource( "BoxMesh_7k3vr" )
+
+[node name="Player" parent="." instance=ExtResource( "1_5u4og" )]
+position = Vector2(113, 206)
+walk_speed = 200.0
+dash_duration = 0.2
+attack_orb_path = NodePath("../Orb")
+
+[node name="Orb" parent="." instance=ExtResource( "2_4mtcb" )]
+position = Vector2(164, 184)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(0.3, 0.3)
+rotating = true
+current = true
+script = ExtResource( "3_w71m5" )
+max_offset = Vector2(20, 15)

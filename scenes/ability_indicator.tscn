@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://djgkrvvr78s2t"]
+
+[ext_resource type="Texture2D" uid="uid://byc2jhopeetux" path="res://icon.png" id="1_mds16"]
+[ext_resource type="Script" path="res://scripts/ability_indicator.gd" id="2_6ouqm"]
+
+[node name="AbilityIndicator" type="TextureProgressBar"]
+anchor_right = 0.062
+anchor_bottom = 0.107
+offset_right = 0.511997
+offset_bottom = -0.200005
+value = 60.0
+fill_mode = 4
+texture_under = ExtResource( "1_mds16" )
+texture_progress = ExtResource( "1_mds16" )
+tint_under = Color(0.239216, 0.239216, 0.239216, 1)
+script = ExtResource( "2_6ouqm" )
+
+[node name="RemainingTime" type="Label" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -26.0
+offset_right = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "5.0"
+horizontal_alignment = 2
+metadata/_edit_layout_mode = 1
+
+[node name="AbilityName" type="Label" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -42.0
+offset_right = 42.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Dash"
+horizontal_alignment = 1
+metadata/_edit_layout_mode = 1
