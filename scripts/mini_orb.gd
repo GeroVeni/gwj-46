@@ -1,7 +1,7 @@
 extends AnimatableBody2D
 
 @export var omega: = PI * 2
-@export var rotation_radius: = 15.0
+@export var rotation_radius: = 50.0
 @export var flight_speed = 1200.0
 
 var angle_offset: = 0.0
@@ -45,4 +45,5 @@ func _physics_process(delta):
 		position = rotation_radius * Vector2(position_3d.x, position_3d.y)
 		z_index = int(sign(position_3d.z))
 	else:
+		z_index = 0
 		global_position += flight_speed * delta * direction
