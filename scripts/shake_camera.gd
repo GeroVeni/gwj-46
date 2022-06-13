@@ -1,38 +1,74 @@
+@tool
+
 extends Camera2D
 
 
 @export var decay = 0.8  # How quickly the shaking stops [0, 1].
-@export var max_offset = Vector2(10, 7.5)  # Maximum hor/ver shake in pixels.
+@export var max_offset = Vector2(100, 75)  # Maximum hor/ver shake in pixels.
 @export var max_roll = 0.1  # Maximum rotation in radians (use sparingly).
-@export var target: NodePath  # Assign the node this camera will follow.
+
+@export var camera_smoothing: = 0.1
+@export var movement_bias: = 30.0
+@export var movement_bias_smoothing: = 0.1
+@export var target_path: NodePath  # Assign the node this camera will follow.
+
+@export var deadzone_size: Vector2
+@export var deadzone_offset: Vector2
+
+@onready var target: Node2D = get_node(target_path)
+@onready var noise: FastNoiseLite = FastNoiseLite.new()
+var noise_y = 0
 
 var trauma = 0.0  # Current shake strength.
 var trauma_power = 2  # Trauma exponent. Use [2, 3].
+
+var movement_offset: = Vector2()
+
+
+func _ready():
+	randomize()
+	noise.seed = randi()
+	noise.frequency = 0.05
+	noise.fractal_octaves = 2
 
 
 func add_trauma(amount):
 	trauma = min(trauma + amount, 1.0)
 
+func draw_gizmos():
+	$Line2D.points = PackedVector2Array([
+		Vector2(deadzone_offset.x - deadzone_size.x / 2, deadzone_offset.y - deadzone_size.y / 2),
+		Vector2(deadzone_offset.x + deadzone_size.x / 2, deadzone_offset.y - deadzone_size.y / 2),
+		Vector2(deadzone_offset.x + deadzone_size.x / 2, deadzone_offset.y + deadzone_size.y / 2),
+		Vector2(deadzone_offset.x - deadzone_size.x / 2, deadzone_offset.y + deadzone_size.y / 2),
+		Vector2(deadzone_offset.x - deadzone_size.x / 2, deadzone_offset.y - deadzone_size.y / 2),
+	])
+	$Line2D.hide()
 
 func shake():
 	var amount = pow(trauma, trauma_power)
-	rotation = max_roll * amount * randf_range(-1, 1)
-	offset.x = max_offset.x * amount * randf_range(-1, 1)
-	offset.y = max_offset.y * amount * randf_range(-1, 1)
-
-
-func _ready():
-	randomize()
-
+	noise_y += 1
+	print(noise_y)
+	print(noise.get_noise_2d(noise.seed, noise_y))
+	rotation = max_roll * amount * noise.get_noise_2d(noise.seed, noise_y)
+	offset.x = max_offset.x * amount * noise.get_noise_2d(noise.seed * 2, noise_y)
+	offset.y = max_offset.y * amount * noise.get_noise_2d(noise.seed * 3, noise_y)
 
 func _process(delta):
-	if Input.is_action_just_pressed("low_trauma"):
-		add_trauma(0.4)
-	if Input.is_action_just_pressed("high_trauma"):
-		add_trauma(0.8)
-	if target:
-		global_position = get_node(target).global_position
-	if trauma:
-		print(trauma)
-		trauma = max(trauma - decay * delta, 0)
-		shake()
+	if Engine.is_editor_hint():
+		draw_gizmos()
+	else:
+		if Input.is_action_just_pressed("low_trauma"):
+			add_trauma(0.4)
+		if Input.is_action_just_pressed("high_trauma"):
+			add_trauma(0.8)
+		if target_path:
+			var target_movement_offset = Vector2()
+			if target.velocity:
+				target_movement_offset = target.velocity.normalized() * movement_bias
+			movement_offset = movement_offset.lerp(target_movement_offset, movement_bias_smoothing)
+			global_position = global_position.lerp(target.global_position + movement_offset, camera_smoothing)
+		if trauma:
+			# print(trauma)
+			trauma = max(trauma - decay * delta, 0)
+			shake()
