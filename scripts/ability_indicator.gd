@@ -1,6 +1,6 @@
 extends TextureProgressBar
 
-@export var cooldown_timer_path: NodePath
+@export var cooldown_timer_path: NodePath = "../../../GameWorld/Player/DashCooldownTimer"
 @export var ability_name: String
 @export var cooldown_duration: = 1.0
 
