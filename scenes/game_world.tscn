@@ -32,8 +32,6 @@ attack_orb_path = NodePath("../Orb")
 position = Vector2(164, 184)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, 1)
-scale = Vector2(0.3, 0.3)
 rotating = true
 current = true
 script = ExtResource( "3_w71m5" )

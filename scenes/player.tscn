@@ -9,7 +9,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_w0ij3"]
 radius = 25.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource( "1_g2byx" )
 dash_duration = 0.3
 
