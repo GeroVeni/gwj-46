@@ -6,11 +6,13 @@ extends CharacterBody2D
 @export var dash_duration: = 0.2
 
 @export var attack_orb_path: NodePath
+@export var shield_path: NodePath
 
 @onready var dash_timer: Timer = $DashTimer
 @onready var dash_cooldown_timer: Timer = $DashCooldownTimer
 
 var attack_orb: Node2D
+@onready var shield: Node2D = get_node(shield_path)
 
 var speed_modifier: = 1.0
 var dash_direction: = Vector2.UP
@@ -31,8 +33,10 @@ var attack_2_shards: = {
 }
 var attack_2_hold_duration: = 0.0
 
+var attack_3: = false
+
 func attacking() -> bool:
-	return attack_1 || attack_2
+	return attack_1 || attack_2 || attack_3
 
 func on_attack_finish():
 	print("attack finished")
@@ -44,6 +48,7 @@ func _ready():
 
 		# $IdleOrb.position = $OrbPosition.position
 		attack_orb = get_node(attack_orb_path)
+		attack_orb.player = self
 		attack_orb.global_position = $OrbPosition.global_position
 		attack_orb.idle_position = $OrbPosition
 		attack_orb.attack_finished.connect(on_attack_finish)
@@ -82,6 +87,16 @@ func _process(delta):
 		speed_modifier = 1
 		attack_2 = false
 		attack_orb.send_attack_2(get_global_mouse_position())
+	elif !attacking() && Input.is_action_just_pressed("shield"):
+		speed_modifier = 0.35
+		attack_3 = true
+		shield.show()
+		attack_orb.hide()
+	elif attack_3 && Input.is_action_just_released("shield"):
+		speed_modifier = 1
+		attack_3 = false
+		attack_orb.show()
+		shield.hide()
 
 	if attack_2:
 		attack_orb.update_attack_2(get_attack_2_orb_count(attack_2_hold_duration))

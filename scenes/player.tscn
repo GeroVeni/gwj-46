@@ -1,6 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bces3yyu57psw"]
+[gd_scene load_steps=7 format=3 uid="uid://bces3yyu57psw"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_g2byx"]
+[ext_resource type="Texture2D" uid="uid://covx88lujfer0" path="res://assets/Shield_effect_1.png" id="2_kl3ry"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qbc1s"]
+radius = 125.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_iipc8"]
 
@@ -12,6 +16,20 @@ radius = 25.0
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource( "1_g2byx" )
 dash_duration = 0.3
+shield_path = NodePath("Shield")
+
+[node name="Shield" type="Area2D" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Shield"]
+position = Vector2(2, -12)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource( "2_kl3ry" )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield"]
+position = Vector2(-1.19209e-07, 0)
+scale = Vector2(1, 1)
+shape = SubResource( "CircleShape2D_qbc1s" )
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 scale = Vector2(50, 50)

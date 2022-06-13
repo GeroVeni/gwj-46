@@ -20,6 +20,8 @@ signal attack_finished
 
 @export var mini_orb_scene: PackedScene = preload("res://scenes/mini_orb.tscn")
 
+var player: Node2D
+
 var flying: = FlyingMode.IDLE
 
 var target_position: Vector2
@@ -48,8 +50,9 @@ func attack_1(p_target_position: Vector2):
 func generate_orb():
 	var mini_orb = mini_orb_scene.instantiate()
 	print(mini_orb)
-	add_child(mini_orb)
 	attack_2_mini_orbs.append(mini_orb)
+	if player:
+		player.add_child(mini_orb)
 
 func start_attack_2():
 	attack_mode = AttackMode.ATTACK_2
