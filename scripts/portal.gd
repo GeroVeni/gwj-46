@@ -11,6 +11,7 @@ var exit_portal : Area2D
 var trap_active = 0
 var is_active = 0
 var player_body : Node2D
+
 func _process(delta):
 	if player_body:
 		if portal_timer.is_stopped():
@@ -19,9 +20,9 @@ func _process(delta):
 				print("test")
 			else:
 				portal_timer.stop()
-			
-		
-	
+
+
+
 func _ready():
 	if exit_portal_path:
 		exit_portal = get_node(exit_portal_path)
@@ -29,7 +30,7 @@ func _ready():
 		$MeshInstance2D.modulate = entry_color
 	else:
 		$MeshInstance2D.modulate = exit_color
-		
+
 
 func _on_portal_body_entered(body):
 	if body.is_in_group("player"):
@@ -37,15 +38,15 @@ func _on_portal_body_entered(body):
 		if is_entry:
 			is_active = 1
 			$MeshInstance2D.modulate = activation_color
-				
-			
+
+
 
 
 func _on_portal_timer_timeout():
 	player_body.global_position = exit_portal.global_position
 	portal_timer.stop()
 	player_body = null
-	
+
 
 
 func _on_portal_body_exited(body):

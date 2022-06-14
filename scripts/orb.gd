@@ -59,15 +59,16 @@ func start_attack_2():
 	attack_2_mini_orb_count = 1
 	generate_orb()
 
-func update_attack_2(orb_count: int):
+func update_attack_2(orb_count: int) -> bool:
 	var extra_mini_orbs = orb_count - attack_2_mini_orb_count
 	attack_2_mini_orb_count = orb_count
 	if !extra_mini_orbs:
-		return
+		return false
 	print("Generating %d orbs" % extra_mini_orbs)
 	print(mini_orb_scene)
 	for i in extra_mini_orbs:
 		generate_orb()
+	return true
 
 func on_mini_orb_launch_ready():
 	$MiniOrbLaunchTimer.stop()

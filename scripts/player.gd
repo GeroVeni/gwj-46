@@ -5,6 +5,10 @@ extends CharacterBody2D
 @export var dash_speed: = 1000.0
 @export var dash_duration: = 0.2
 
+@export var attack_1_cost: = 1.0
+@export var attack_2_phase_cost: = 1.0
+@export var shield_drain_cost: = 1.0
+
 @export var attack_orb_path: NodePath
 @export var shield_path: NodePath
 
@@ -76,10 +80,12 @@ func _process(delta):
 
 	if !attacking() && Input.is_action_just_pressed("attack_1"):
 		attack_1 = true
+		GameData.life_force -= attack_1_cost
 		var direction = (get_global_mouse_position() - global_position).normalized()
 		attack_orb.attack_1(global_position + direction * attack_1_range)
 	elif !attacking() && Input.is_action_just_pressed("attack_2"):
 		attack_2 = true
+		GameData.life_force -= attack_2_phase_cost
 		attack_2_hold_duration = 0
 		speed_modifier = 0.35
 		attack_orb.start_attack_2()
@@ -99,7 +105,12 @@ func _process(delta):
 		shield.hide()
 
 	if attack_2:
-		attack_orb.update_attack_2(get_attack_2_orb_count(attack_2_hold_duration))
+		if attack_orb.update_attack_2(get_attack_2_orb_count(attack_2_hold_duration)):
+			GameData.life_force -= attack_2_phase_cost
+
+	if attack_3 && !Input.is_action_just_pressed("shield"):
+		# drain energy
+		GameData.life_force -= shield_drain_cost * delta
 
 func _physics_process(_delta):
 	var dash_pressed = Input.is_action_just_pressed("dash")

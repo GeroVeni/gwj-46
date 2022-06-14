@@ -36,14 +36,15 @@ func add_trauma(amount):
 	trauma = min(trauma + amount, 1.0)
 
 func draw_gizmos():
-	$Line2D.points = PackedVector2Array([
-		Vector2(deadzone_offset.x - deadzone_size.x / 2, deadzone_offset.y - deadzone_size.y / 2),
-		Vector2(deadzone_offset.x + deadzone_size.x / 2, deadzone_offset.y - deadzone_size.y / 2),
-		Vector2(deadzone_offset.x + deadzone_size.x / 2, deadzone_offset.y + deadzone_size.y / 2),
-		Vector2(deadzone_offset.x - deadzone_size.x / 2, deadzone_offset.y + deadzone_size.y / 2),
-		Vector2(deadzone_offset.x - deadzone_size.x / 2, deadzone_offset.y - deadzone_size.y / 2),
-	])
-	$Line2D.hide()
+	if has_node("Line2D"):
+		$Line2D.points = PackedVector2Array([
+			Vector2(deadzone_offset.x - deadzone_size.x / 2, deadzone_offset.y - deadzone_size.y / 2),
+			Vector2(deadzone_offset.x + deadzone_size.x / 2, deadzone_offset.y - deadzone_size.y / 2),
+			Vector2(deadzone_offset.x + deadzone_size.x / 2, deadzone_offset.y + deadzone_size.y / 2),
+			Vector2(deadzone_offset.x - deadzone_size.x / 2, deadzone_offset.y + deadzone_size.y / 2),
+			Vector2(deadzone_offset.x - deadzone_size.x / 2, deadzone_offset.y - deadzone_size.y / 2),
+		])
+		$Line2D.hide()
 
 func shake():
 	var amount = pow(trauma, trauma_power)
