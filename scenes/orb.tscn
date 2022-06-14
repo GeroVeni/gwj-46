@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://c7xsx3t3f6g04"]
+[gd_scene load_steps=11 format=3 uid="uid://c7xsx3t3f6g04"]
 
 [ext_resource type="Script" path="res://scripts/orb.gd" id="1_4p7aa"]
 [ext_resource type="Texture2D" uid="uid://cvako641lsxht" path="res://assets/Orb_1.png" id="2_7os6y"]
-[ext_resource type="Texture2D" uid="uid://byc2jhopeetux" path="res://icon.png" id="3_xdr7g"]
+[ext_resource type="Texture2D" uid="uid://d22jc81rgwrjm" path="res://addons/kenney_particle_pack/circle_03.png" id="4_7cadc"]
+[ext_resource type="Texture2D" uid="uid://dbkyc2423pwiv" path="res://addons/kenney_particle_pack/circle_05.png" id="4_yomhd"]
+[ext_resource type="Texture2D" uid="uid://drso2jo5701t7" path="res://addons/kenney_particle_pack/spark_06.png" id="5_s1pxk"]
 
 [sub_resource type="Curve" id="Curve_75vyr"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -25,15 +27,32 @@ angular_velocity_min = -90.0
 angular_velocity_max = 90.0
 orbit_velocity_min = 0.05
 orbit_velocity_max = 0.2
-scale_min = 0.01
-scale_max = 0.02
+scale_min = 0.0
+scale_max = 0.01
 color = Color(0.0980392, 0.858824, 1, 1)
+
+[sub_resource type="ParticlesMaterial" id="ParticlesMaterial_1g5m6"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+angular_velocity_min = -20.0
+angular_velocity_max = 20.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_max = 360.0
+scale_min = 0.8
+scale_max = 1.2
 
 [node name="Orb" type="AnimatableBody2D"]
 collision_layer = 0
 sync_to_physics = false
 script = ExtResource( "1_4p7aa" )
 travel_curve = SubResource( "Curve_75vyr" )
+
+[node name="Circle03" type="Sprite2D" parent="."]
+modulate = Color(0.8, 1.6, 2, 1)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource( "4_7cadc" )
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 visible = false
@@ -53,4 +72,12 @@ texture = ExtResource( "2_7os6y" )
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 amount = 50
 process_material = SubResource( "ParticlesMaterial_dwgxo" )
-texture = ExtResource( "3_xdr7g" )
+texture = ExtResource( "4_yomhd" )
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+modulate = Color(0.607843, 0.960784, 1, 1)
+scale = Vector2(0.04, 0.04)
+amount = 4
+lifetime = 2.0
+process_material = SubResource( "ParticlesMaterial_1g5m6" )
+texture = ExtResource( "5_s1pxk" )

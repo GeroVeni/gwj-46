@@ -16,7 +16,6 @@ radius = 25.0
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource( "1_g2byx" )
 dash_duration = 0.3
-shiled_drain_cost = 3.0
 shield_path = NodePath("Shield")
 
 [node name="Shield" type="Area2D" parent="."]
