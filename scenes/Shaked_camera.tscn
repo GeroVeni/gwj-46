@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0df3riprcma5"]
+
+[ext_resource type="Script" path="res://scripts/shake_camera.gd" id="1_da3yr"]
+
+[node name="Camera2D" type="Camera2D"]
+position = Vector2(-71, 38)
+rotating = true
+current = true
+script = ExtResource( "1_da3yr" )
+max_offset = Vector2(20, 15)
+target = NodePath("../Player")

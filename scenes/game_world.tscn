@@ -1,12 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cv1meci1g16oa"]
+[gd_scene load_steps=7 format=3 uid="uid://cv1meci1g16oa"]
 
 [ext_resource type="PackedScene" uid="uid://bces3yyu57psw" path="res://scenes/player.tscn" id="1_5u4og"]
 [ext_resource type="Script" path="res://scripts/game_world.gd" id="1_dn2vl"]
 [ext_resource type="PackedScene" uid="uid://c7xsx3t3f6g04" path="res://scenes/orb.tscn" id="2_4mtcb"]
-[ext_resource type="Script" path="res://scripts/shake_camera.gd" id="3_w71m5"]
-[ext_resource type="PackedScene" uid="uid://bmb8pnijgnk8j" path="res://scenes/wall.tscn" id="4_sduoq"]
-[ext_resource type="PackedScene" uid="uid://j8rt0stha258" path="res://scenes/boss.tscn" id="5_kttar"]
-[ext_resource type="PackedScene" uid="uid://53jpuplspbg8" path="res://scenes/boss_orb.tscn" id="7_6pm2f"]
+[ext_resource type="PackedScene" uid="uid://d0df3riprcma5" path="res://scenes/Shaked_camera.tscn" id="3_ppprb"]
+[ext_resource type="PackedScene" uid="uid://brrv2hiq6alur" path="res://scenes/mummy.tscn" id="5_3ed0t"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_erw7m"]
 
@@ -93,23 +91,11 @@ attack_orb_path = NodePath("../Orb")
 position = Vector2(27, 1095)
 scale = Vector2(2, 2)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-26, 1126)
-rotating = true
-current = true
-zoom = Vector2(0.7, 0.7)
-script = ExtResource( "3_w71m5" )
-max_offset = Vector2(0, 0)
-camera_smoothing = 0.2
-movement_bias = 0.0
-movement_bias_smoothing = 0.5
-target_path = NodePath("../Player")
-deadzone_size = Vector2(400, 200)
-deadzone_offset = Vector2(0, 0)
-max_zoom = 1.3
+[node name="Camera2D" parent="." instance=ExtResource( "3_ppprb" )]
 
-[node name="Line2D" type="Line2D" parent="Camera2D"]
-visible = false
-points = PackedVector2Array(-200, -100, 200, -100, 200, 100, -200, 100, -200, -100)
+[node name="mummy4" parent="." instance=ExtResource( "5_3ed0t" )]
+position = Vector2(-112, -171)
+charge_duration = 0.5
+player_path = NodePath("../Player")
 
 [connection signal="body_entered" from="Environment/BossEntry" to="." method="_on_boss_entry_body_entered"]

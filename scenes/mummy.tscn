@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://brrv2hiq6alur"]
+
+[ext_resource type="Script" path="res://scripts/mummy.gd" id="1_p33jf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i1vdw"]
+radius = 20.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_ws6t7"]
+radius = 20.0
+height = 40.0
+
+[node name="mummy" type="CharacterBody2D"]
+script = ExtResource( "1_p33jf" )
+speed = 75.0
+charge_duration = 0.15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+modulate = Color(0.92549, 0.0705882, 0.196078, 1)
+self_modulate = Color(1, 0.0862745, 0.0941176, 1)
+shape = SubResource( "CircleShape2D_i1vdw" )
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+visible = false
+mesh = SubResource( "SphereMesh_ws6t7" )
+
+[node name="charge_cooldown_timer" type="Timer" parent="."]
+
+[node name="charge_duration_timer" type="Timer" parent="."]
+
+[node name="charge_windup_timer" type="Timer" parent="."]
+
+[node name="attack_cooldown_timer" type="Timer" parent="."]
