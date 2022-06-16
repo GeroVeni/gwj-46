@@ -1,3 +1,237 @@
-[gd_scene format=3 uid="uid://c08pywawy6i5v"]
+[gd_scene load_steps=6 format=3 uid="uid://c08pywawy6i5v"]
+
+[ext_resource type="PackedScene" uid="uid://bmb8pnijgnk8j" path="res://scenes/wall.tscn" id="1_ltsbo"]
+[ext_resource type="PackedScene" uid="uid://bces3yyu57psw" path="res://scenes/player.tscn" id="2_di2ag"]
+[ext_resource type="PackedScene" uid="uid://c7xsx3t3f6g04" path="res://scenes/orb.tscn" id="3_i4mxv"]
+[ext_resource type="PackedScene" uid="uid://d0df3riprcma5" path="res://scenes/Shaked_camera.tscn" id="4_tu0dg"]
+[ext_resource type="Texture2D" uid="uid://18tn156i0x5w" path="res://assets/Sand_texture.jpg" id="5_d32rr"]
 
 [node name="Node2D" type="Node2D"]
+position = Vector2(-151, -4)
+
+[node name="Sands" type="Node2D" parent="."]
+z_index = -4096
+
+[node name="SandTexture" type="Sprite2D" parent="Sands"]
+position = Vector2(92, -165.5)
+scale = Vector2(0.441176, 0.344669)
+texture = ExtResource( "5_d32rr" )
+
+[node name="SandTexture2" type="Sprite2D" parent="Sands"]
+position = Vector2(92, -165.5)
+scale = Vector2(0.441176, 0.344669)
+texture = ExtResource( "5_d32rr" )
+
+[node name="SandTexture3" type="Sprite2D" parent="Sands"]
+position = Vector2(92, -165.5)
+scale = Vector2(0.441176, 0.344669)
+texture = ExtResource( "5_d32rr" )
+
+[node name="SandTexture4" type="Sprite2D" parent="Sands"]
+position = Vector2(92, -165.5)
+scale = Vector2(0.441176, 0.344669)
+texture = ExtResource( "5_d32rr" )
+
+[node name="SandTexture5" type="Sprite2D" parent="Sands"]
+position = Vector2(92, -165.5)
+scale = Vector2(0.441176, 0.344669)
+texture = ExtResource( "5_d32rr" )
+
+[node name="SandTexture6" type="Sprite2D" parent="Sands"]
+position = Vector2(88, -1291)
+rotation = 3.14159
+scale = Vector2(0.441176, 0.344669)
+texture = ExtResource( "5_d32rr" )
+
+[node name="SandTexture7" type="Sprite2D" parent="Sands"]
+position = Vector2(3403, -1289)
+rotation = 3.14159
+scale = Vector2(0.502868, 0.343443)
+texture = ExtResource( "5_d32rr" )
+
+[node name="SandTexture9" type="Sprite2D" parent="Sands"]
+position = Vector2(2248, -1283)
+rotation = 3.14159
+scale = Vector2(0.441176, 0.344669)
+texture = ExtResource( "5_d32rr" )
+
+[node name="SandTexture10" type="Sprite2D" parent="Sands"]
+position = Vector2(3467, -2409)
+scale = Vector2(0.441176, 0.344669)
+texture = ExtResource( "5_d32rr" )
+
+[node name="SandTexture11" type="Sprite2D" parent="Sands"]
+position = Vector2(3467, -2409)
+scale = Vector2(0.441176, 0.344669)
+texture = ExtResource( "5_d32rr" )
+
+[node name="SandTexture12" type="Sprite2D" parent="Sands"]
+position = Vector2(4538, -5362)
+scale = Vector2(0.441176, 0.344669)
+texture = ExtResource( "5_d32rr" )
+flip_v = true
+
+[node name="SandTexture17" type="Sprite2D" parent="Sands"]
+position = Vector2(2406, -5373)
+scale = Vector2(0.441176, 0.344669)
+texture = ExtResource( "5_d32rr" )
+flip_v = true
+
+[node name="SandTexture13" type="Sprite2D" parent="Sands"]
+position = Vector2(4542, -4263)
+scale = Vector2(0.441176, 0.344669)
+texture = ExtResource( "5_d32rr" )
+
+[node name="SandTexture19" type="Sprite2D" parent="Sands"]
+position = Vector2(5118.25, -4768.38)
+scale = Vector2(0.0341095, 0.654642)
+texture = ExtResource( "5_d32rr" )
+
+[node name="SandTexture14" type="Sprite2D" parent="Sands"]
+position = Vector2(3464, -4640)
+scale = Vector2(0.441176, 0.344669)
+texture = ExtResource( "5_d32rr" )
+
+[node name="SandTexture18" type="Sprite2D" parent="Sands"]
+position = Vector2(3461, -5755)
+scale = Vector2(0.441176, 0.344669)
+texture = ExtResource( "5_d32rr" )
+flip_h = true
+flip_v = true
+
+[node name="SandTexture15" type="Sprite2D" parent="Sands"]
+position = Vector2(2392, -4256)
+scale = Vector2(0.441176, 0.344669)
+texture = ExtResource( "5_d32rr" )
+
+[node name="SandTexture16" type="Sprite2D" parent="Sands"]
+position = Vector2(3467, -3526)
+rotation = -3.14159
+scale = Vector2(0.441176, 0.344669)
+texture = ExtResource( "5_d32rr" )
+
+[node name="SandTexture8" type="Sprite2D" parent="Sands"]
+position = Vector2(1168, -1287)
+rotation = 3.14159
+scale = Vector2(0.441176, 0.344669)
+texture = ExtResource( "5_d32rr" )
+
+[node name="Walls" type="Node2D" parent="."]
+scale = Vector2(0.75, 0.75)
+
+[node name="Wall" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(-600, -971)
+scale = Vector2(1, 20)
+
+[node name="Wall6" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(-600, -2322)
+scale = Vector2(1, 20)
+
+[node name="Wall2" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(844, -971)
+scale = Vector2(1, 20)
+
+[node name="Wall11" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(5358, -2476)
+scale = Vector2(1, 20)
+
+[node name="Wall12" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(5354, -3952)
+scale = Vector2(1, 20)
+
+[node name="Wall14" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(3898, -4915)
+scale = Vector2(1, 20)
+
+[node name="Wall13" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(3896, -3821)
+scale = Vector2(1, 20)
+
+[node name="Wall15" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(5352, -4915)
+scale = Vector2(1, 20)
+
+[node name="Wall4" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(846, -971)
+rotation = -1.5708
+scale = Vector2(1, 20)
+
+[node name="Wall8" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(2346, -971)
+rotation = -1.5708
+scale = Vector2(1, 20)
+
+[node name="Wall10" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(3856, -971)
+rotation = -1.5708
+scale = Vector2(1, 20)
+
+[node name="Wall17" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(2403, -4925)
+rotation = -1.5708
+scale = Vector2(1, 20)
+
+[node name="Wall21" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(5360, -4925)
+rotation = -1.5708
+scale = Vector2(1, 20)
+
+[node name="Wall9" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(2394, -2322)
+rotation = -1.5708
+scale = Vector2(1, 20)
+
+[node name="Wall5" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(887, -2322)
+rotation = -1.5708
+scale = Vector2(1, 20)
+
+[node name="Wall7" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(-598, -2322)
+rotation = -1.5708
+scale = Vector2(1, 20)
+
+[node name="Wall18" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(2485.33, -6273.33)
+scale = Vector2(1, 20)
+
+[node name="Wall19" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(2485.33, -7773.33)
+scale = Vector2(1, 20)
+
+[node name="Wall23" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(6882.67, -6422.33)
+scale = Vector2(1, 20)
+
+[node name="Wall24" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(6882.67, -7773.33)
+scale = Vector2(1, 20)
+
+[node name="Wall25" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(4009, -7783)
+rotation = -1.5708
+scale = Vector2(1, 20)
+
+[node name="Wall26" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(2501, -7783)
+rotation = -1.5708
+scale = Vector2(1, 20)
+
+[node name="Wall28" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(5514, -7783)
+rotation = -1.5708
+scale = Vector2(1, 20)
+
+[node name="Wall3" parent="Walls" instance=ExtResource( "1_ltsbo" )]
+position = Vector2(846, 529)
+rotation = 1.57148
+scale = Vector2(1, 20)
+
+[node name="Player" parent="." instance=ExtResource( "2_di2ag" )]
+position = Vector2(132, 230)
+attack_orb_path = NodePath("../Orb")
+
+[node name="Orb" parent="." instance=ExtResource( "3_i4mxv" )]
+position = Vector2(182, 205)
+
+[node name="Camera2D" parent="." instance=ExtResource( "4_tu0dg" )]

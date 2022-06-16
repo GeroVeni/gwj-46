@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwg8svl7ormj3"]
+[gd_scene load_steps=8 format=3 uid="uid://bwg8svl7ormj3"]
 
 [ext_resource type="PackedScene" uid="uid://bces3yyu57psw" path="res://scenes/player.tscn" id="1_rmpcw"]
 [ext_resource type="PackedScene" uid="uid://c7xsx3t3f6g04" path="res://scenes/orb.tscn" id="2_6bu36"]
-[ext_resource type="Script" path="res://scripts/shake_camera.gd" id="3_7n2bb"]
+[ext_resource type="PackedScene" uid="uid://d0df3riprcma5" path="res://scenes/Shaked_camera.tscn" id="3_ku3ur"]
 [ext_resource type="PackedScene" uid="uid://bmb8pnijgnk8j" path="res://scenes/wall.tscn" id="4_6dpf7"]
 [ext_resource type="PackedScene" uid="uid://c4ad4hqklqyib" path="res://scenes/spikes.tscn" id="5_2t673"]
 [ext_resource type="PackedScene" uid="uid://67bq74oiyi7j" path="res://scenes/portal.tscn" id="6_fy1hi"]
+[ext_resource type="Texture2D" uid="uid://sro5eoo7y4yx" path="res://assets/maze_texture.jpg" id="7_0ir0j"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(-12, 161)
@@ -17,13 +18,7 @@ attack_orb_path = NodePath("../Orb")
 [node name="Orb" parent="." instance=ExtResource( "2_6bu36" )]
 position = Vector2(26, 21)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-71, 38)
-rotating = true
-current = true
-script = ExtResource( "3_7n2bb" )
-max_offset = Vector2(20, 15)
-target = NodePath("../Player")
+[node name="Camera2D" parent="." instance=ExtResource( "3_ku3ur" )]
 
 [node name="Portal" parent="." instance=ExtResource( "6_fy1hi" )]
 position = Vector2(410, 38)
@@ -1090,3 +1085,9 @@ position = Vector2(75, 524)
 
 [node name="Wall649" parent="." instance=ExtResource( "4_6dpf7" )]
 position = Vector2(75, 149)
+
+[node name="MazeTexture" type="Sprite2D" parent="."]
+position = Vector2(591, 562)
+scale = Vector2(1.22534, 1.62267)
+z_index = -4096
+texture = ExtResource( "7_0ir0j" )

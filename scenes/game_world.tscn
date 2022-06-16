@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cv1meci1g16oa"]
+[gd_scene load_steps=7 format=3 uid="uid://cv1meci1g16oa"]
 
 [ext_resource type="PackedScene" uid="uid://bces3yyu57psw" path="res://scenes/player.tscn" id="1_5u4og"]
 [ext_resource type="PackedScene" uid="uid://c7xsx3t3f6g04" path="res://scenes/orb.tscn" id="2_4mtcb"]
-[ext_resource type="Script" path="res://scripts/shake_camera.gd" id="3_w71m5"]
+[ext_resource type="PackedScene" uid="uid://d0df3riprcma5" path="res://scenes/Shaked_camera.tscn" id="3_ppprb"]
+[ext_resource type="PackedScene" uid="uid://brrv2hiq6alur" path="res://scenes/mummy.tscn" id="5_3ed0t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rmnsr"]
 size = Vector2(224.233, 87.0575)
@@ -31,8 +32,9 @@ attack_orb_path = NodePath("../Orb")
 [node name="Orb" parent="." instance=ExtResource( "2_4mtcb" )]
 position = Vector2(164, 184)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-rotating = true
-current = true
-script = ExtResource( "3_w71m5" )
-max_offset = Vector2(20, 15)
+[node name="Camera2D" parent="." instance=ExtResource( "3_ppprb" )]
+
+[node name="mummy4" parent="." instance=ExtResource( "5_3ed0t" )]
+position = Vector2(-112, -171)
+charge_duration = 0.5
+player_path = NodePath("../Player")
