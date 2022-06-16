@@ -20,6 +20,8 @@ signal attack_finished
 
 @export var mini_orb_scene: PackedScene = preload("res://scenes/mini_orb.tscn")
 
+var player: Node2D
+
 var flying: = FlyingMode.IDLE
 
 var target_position: Vector2
@@ -48,23 +50,25 @@ func attack_1(p_target_position: Vector2):
 func generate_orb():
 	var mini_orb = mini_orb_scene.instantiate()
 	print(mini_orb)
-	add_child(mini_orb)
 	attack_2_mini_orbs.append(mini_orb)
+	if player:
+		player.add_child(mini_orb)
 
 func start_attack_2():
 	attack_mode = AttackMode.ATTACK_2
 	attack_2_mini_orb_count = 1
 	generate_orb()
 
-func update_attack_2(orb_count: int):
+func update_attack_2(orb_count: int) -> bool:
 	var extra_mini_orbs = orb_count - attack_2_mini_orb_count
 	attack_2_mini_orb_count = orb_count
 	if !extra_mini_orbs:
-		return
+		return false
 	print("Generating %d orbs" % extra_mini_orbs)
 	print(mini_orb_scene)
 	for i in extra_mini_orbs:
 		generate_orb()
+	return true
 
 func on_mini_orb_launch_ready():
 	$MiniOrbLaunchTimer.stop()

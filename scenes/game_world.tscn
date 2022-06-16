@@ -1,27 +1,147 @@
 [gd_scene load_steps=7 format=3 uid="uid://cv1meci1g16oa"]
 
 [ext_resource type="PackedScene" uid="uid://bces3yyu57psw" path="res://scenes/player.tscn" id="1_5u4og"]
+[ext_resource type="PackedScene" path="res://scenes/Wall.tscn" id="1_mwo3x"]
 [ext_resource type="PackedScene" uid="uid://c7xsx3t3f6g04" path="res://scenes/orb.tscn" id="2_4mtcb"]
 [ext_resource type="PackedScene" uid="uid://d0df3riprcma5" path="res://scenes/Shaked_camera.tscn" id="3_ppprb"]
 [ext_resource type="PackedScene" uid="uid://brrv2hiq6alur" path="res://scenes/mummy.tscn" id="5_3ed0t"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rmnsr"]
-size = Vector2(224.233, 87.0575)
-
-[sub_resource type="BoxMesh" id="BoxMesh_7k3vr"]
+[sub_resource type="BoxMesh" id="BoxMesh_erw7m"]
 
 [node name="GameWorld" type="Node2D"]
 position = Vector2(512, 300)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-285.117, -53.5287)
+[node name="Environment" type="Node2D" parent="."]
+position = Vector2(0, 1)
+z_index = -10
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource( "RectangleShape2D_rmnsr" )
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Environment"]
+modulate = Color(0.776471, 0.533333, 0.333333, 1)
+position = Vector2(50, -190)
+rotation = 3.14159
+scale = Vector2(2098.59, -1815.46)
+mesh = SubResource( "BoxMesh_erw7m" )
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D"]
-scale = Vector2(224.233, 85.0575)
-mesh = SubResource( "BoxMesh_7k3vr" )
+[node name="Wall" parent="Environment" instance=ExtResource( "1_mwo3x" )]
+modulate = Color(0.215686, 0.545098, 0.172549, 1)
+position = Vector2(-275, -460)
+
+[node name="Wall2" parent="Environment" instance=ExtResource( "1_mwo3x" )]
+modulate = Color(0.215686, 0.545098, 0.172549, 1)
+position = Vector2(261, -468)
+rotation = 0.676822
+
+[node name="Wall11" parent="Environment" instance=ExtResource( "1_mwo3x" )]
+modulate = Color(0.215686, 0.545098, 0.172549, 1)
+position = Vector2(123, -733)
+rotation = 1.53323
+
+[node name="Wall12" parent="Environment" instance=ExtResource( "1_mwo3x" )]
+modulate = Color(0.215686, 0.545098, 0.172549, 1)
+position = Vector2(-139, -736)
+rotation = 1.6091
+
+[node name="Wall3" parent="Environment" instance=ExtResource( "1_mwo3x" )]
+modulate = Color(0.375, 0.354438, 0.34875, 1)
+position = Vector2(-392, 10)
+rotation = -0.00132757
+scale = Vector2(0.3, 0.7)
+
+[node name="Wall4" parent="Environment" instance=ExtResource( "1_mwo3x" )]
+modulate = Color(0.375, 0.354438, 0.34875, 1)
+position = Vector2(-395, 107)
+rotation = -0.00132757
+scale = Vector2(0.3, 0.7)
+
+[node name="Wall5" parent="Environment" instance=ExtResource( "1_mwo3x" )]
+modulate = Color(0.375, 0.354438, 0.34875, 1)
+position = Vector2(-395, 209)
+rotation = -0.00132757
+scale = Vector2(0.3, 0.7)
+
+[node name="Wall6" parent="Environment" instance=ExtResource( "1_mwo3x" )]
+modulate = Color(0.375, 0.354438, 0.34875, 1)
+position = Vector2(391, 212)
+rotation = -0.00132757
+scale = Vector2(0.3, 0.7)
+
+[node name="Wall7" parent="Environment" instance=ExtResource( "1_mwo3x" )]
+modulate = Color(0.375, 0.354438, 0.34875, 1)
+position = Vector2(388, 118)
+rotation = -0.00132757
+scale = Vector2(0.3, 0.7)
+
+[node name="Wall8" parent="Environment" instance=ExtResource( "1_mwo3x" )]
+modulate = Color(0.375, 0.354438, 0.34875, 1)
+position = Vector2(383, 18.9999)
+rotation = -0.00132757
+scale = Vector2(0.3, 0.7)
+
+[node name="Wall9" parent="Environment" instance=ExtResource( "1_mwo3x" )]
+modulate = Color(0.375, 0.354438, 0.34875, 1)
+position = Vector2(388, -83.0001)
+rotation = -0.00132757
+scale = Vector2(0.3, 0.7)
+
+[node name="Wall10" parent="Environment" instance=ExtResource( "1_mwo3x" )]
+modulate = Color(0.375, 0.354438, 0.34875, 1)
+position = Vector2(-393, -90)
+rotation = -0.00132757
+scale = Vector2(0.3, 0.7)
+
+[node name="Wall13" parent="Environment" instance=ExtResource( "1_mwo3x" )]
+modulate = Color(0.375, 0.354438, 0.34875, 1)
+position = Vector2(-398, -182)
+rotation = -0.00132757
+scale = Vector2(0.3, 0.7)
+
+[node name="Wall14" parent="Environment" instance=ExtResource( "1_mwo3x" )]
+modulate = Color(0.375, 0.354438, 0.34875, 1)
+position = Vector2(389, -178)
+rotation = -0.00132757
+scale = Vector2(0.3, 0.7)
+
+[node name="Wall15" parent="Environment" instance=ExtResource( "1_mwo3x" )]
+modulate = Color(0.375, 0.354438, 0.34875, 1)
+position = Vector2(389, -277)
+rotation = -0.00132757
+scale = Vector2(0.3, 0.7)
+
+[node name="Wall16" parent="Environment" instance=ExtResource( "1_mwo3x" )]
+modulate = Color(0.375, 0.354438, 0.34875, 1)
+position = Vector2(-392, -282)
+rotation = -0.00132757
+scale = Vector2(0.3, 0.7)
+
+[node name="Wall17" parent="Environment" instance=ExtResource( "1_mwo3x" )]
+modulate = Color(0.537255, 0.376471, 0.192157, 1)
+position = Vector2(-219, 83)
+rotation = -0.404021
+scale = Vector2(0.6, 0.7)
+
+[node name="Wall21" parent="Environment" instance=ExtResource( "1_mwo3x" )]
+modulate = Color(0.537255, 0.376471, 0.192157, 1)
+position = Vector2(-205, -146)
+rotation = 0.783128
+scale = Vector2(1.1, 1.2)
+
+[node name="Wall20" parent="Environment" instance=ExtResource( "1_mwo3x" )]
+modulate = Color(0.537255, 0.376471, 0.192157, 1)
+position = Vector2(249, -105)
+rotation = -0.317932
+scale = Vector2(0.3, 2.4)
+
+[node name="Wall18" parent="Environment" instance=ExtResource( "1_mwo3x" )]
+modulate = Color(0.537255, 0.376471, 0.192157, 1)
+position = Vector2(-104, 394)
+rotation = 0.0228168
+scale = Vector2(0.8, 0.7)
+
+[node name="Wall19" parent="Environment" instance=ExtResource( "1_mwo3x" )]
+modulate = Color(0.537255, 0.376471, 0.192157, 1)
+position = Vector2(183, 400)
+rotation = -0.665309
+scale = Vector2(1.7, 0.9)
 
 [node name="Player" parent="." instance=ExtResource( "1_5u4og" )]
 position = Vector2(113, 206)
@@ -30,7 +150,7 @@ dash_duration = 0.2
 attack_orb_path = NodePath("../Orb")
 
 [node name="Orb" parent="." instance=ExtResource( "2_4mtcb" )]
-position = Vector2(164, 184)
+position = Vector2(324, 210)
 
 [node name="Camera2D" parent="." instance=ExtResource( "3_ppprb" )]
 

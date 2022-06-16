@@ -1,6 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbjvycn6lhst1"]
+[gd_scene load_steps=7 format=3 uid="uid://cbjvycn6lhst1"]
 
 [ext_resource type="PackedScene" uid="uid://djgkrvvr78s2t" path="res://scenes/ability_indicator.tscn" id="1_mdava"]
+[ext_resource type="Script" path="res://scripts/life_force_bar.gd" id="2_4e253"]
+
+[sub_resource type="Gradient" id="Gradient_kixan"]
+colors = PackedColorArray(0.101961, 0.101961, 0.101961, 1, 0.101961, 0.101961, 0.101961, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ej6pi"]
+gradient = SubResource( "Gradient_kixan" )
+
+[sub_resource type="Gradient" id="Gradient_ofput"]
+colors = PackedColorArray(0.309804, 0.682353, 1, 1, 0.311568, 0.68185, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lpkl0"]
+gradient = SubResource( "Gradient_ofput" )
 
 [node name="UI" type="Control"]
 anchor_right = 1.0
@@ -15,8 +28,19 @@ offset_left = -32.0
 offset_top = -104.0
 offset_right = 32.0
 offset_bottom = -40.0
-cooldown_timer_path = NodePath("../../GameWorld/Player/DashCooldownTimer")
 ability_name = "Dash"
 cooldown_duration = 4.0
 metadata/_edit_layout_mode = 1
 metadata/_edit_use_custom_anchors = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = 24.0
+offset_top = 25.0
+offset_right = 408.0
+offset_bottom = 56.0
+step = 0.0
+value = 75.0
+nine_patch_stretch = true
+texture_under = SubResource( "GradientTexture2D_ej6pi" )
+texture_progress = SubResource( "GradientTexture2D_lpkl0" )
+script = ExtResource( "2_4e253" )

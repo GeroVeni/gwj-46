@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwlm355j8m6sg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rmnsr"]
+size = Vector2(224.233, 87.0575)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7k3vr"]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+position = Vector2(-235, -174)
+rotation = -0.629836
+scale = Vector2(1.4, 0.3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( "RectangleShape2D_rmnsr" )
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(224.233, 85.0575)
+mesh = SubResource( "BoxMesh_7k3vr" )
