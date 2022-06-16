@@ -10,16 +10,12 @@ extends Area2D
 var trap_active = 0
 
 
-func _on_spikes_body_entered(body):
+func _on_spikes_body_entered(_body):
 	if !trap_active:
 		trap_timer.start(activation_time)
 		$MeshInstance2D.modulate = warning_color
 		trap_active = 1
-		
-		if !portalType:
-			print("it works")
-	
-	
+
 
 func _on_trap_timer_timeout():
 	if trap_active:
@@ -29,9 +25,9 @@ func _on_trap_timer_timeout():
 		#trap_timer.stop()
 		trap_active = 0
 	else:
-		$MeshInstance2D.modulate = default_color 
+		$MeshInstance2D.modulate = default_color
 		trap_timer.stop()
-		
-	
-	
-	
+
+
+
+

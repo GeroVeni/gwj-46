@@ -41,7 +41,6 @@ func _ready():
 	$MiniOrbLaunchTimer.timeout.connect(on_mini_orb_launch_ready)
 
 func attack_1(p_target_position: Vector2):
-	print(p_target_position)
 	flying = FlyingMode.GOING
 	target_position = p_target_position
 	start_position = global_position
@@ -49,7 +48,6 @@ func attack_1(p_target_position: Vector2):
 
 func generate_orb():
 	var mini_orb = mini_orb_scene.instantiate()
-	print(mini_orb)
 	attack_2_mini_orbs.append(mini_orb)
 	if player:
 		player.add_child(mini_orb)
@@ -64,8 +62,6 @@ func update_attack_2(orb_count: int) -> bool:
 	attack_2_mini_orb_count = orb_count
 	if !extra_mini_orbs:
 		return false
-	print("Generating %d orbs" % extra_mini_orbs)
-	print(mini_orb_scene)
 	for i in extra_mini_orbs:
 		generate_orb()
 	return true
@@ -97,6 +93,5 @@ func _process(delta):
 	else:
 		global_position = global_position.lerp(idle_position.global_position, 4 * delta)
 		if flying == FlyingMode.RETURNING && (global_position - idle_position.global_position).length() < 80:
-			# global_position = idle_position.global_position
 			flying = FlyingMode.IDLE
 			attack_finished.emit()

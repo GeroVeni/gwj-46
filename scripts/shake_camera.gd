@@ -15,6 +15,11 @@ extends Camera2D
 @export var deadzone_size: Vector2
 @export var deadzone_offset: Vector2
 
+@export var start_zoom: = 0.7
+@export var min_zoom: = 0.4
+@export var max_zoom: = 5.0
+@export var zoom_factor: = 1.15
+
 @onready var target: Node2D = get_node(target_path)
 @onready var noise: FastNoiseLite = FastNoiseLite.new()
 var noise_y = 0
@@ -30,6 +35,7 @@ func _ready():
 	noise.seed = randi()
 	noise.frequency = 0.05
 	noise.fractal_octaves = 2
+	zoom = Vector2(start_zoom, start_zoom)
 
 
 func add_trauma(amount):
@@ -49,11 +55,17 @@ func draw_gizmos():
 func shake():
 	var amount = pow(trauma, trauma_power)
 	noise_y += 1
-	print(noise_y)
-	print(noise.get_noise_2d(noise.seed, noise_y))
 	rotation = max_roll * amount * noise.get_noise_2d(noise.seed, noise_y)
 	offset.x = max_offset.x * amount * noise.get_noise_2d(noise.seed * 2, noise_y)
 	offset.y = max_offset.y * amount * noise.get_noise_2d(noise.seed * 3, noise_y)
+
+func _input(event):
+	if event is InputEventMouseButton && event.pressed:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			zoom *= zoom_factor
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			zoom /= zoom_factor
+		zoom = clamp(zoom, Vector2(min_zoom, min_zoom), Vector2(max_zoom, max_zoom))
 
 func _process(delta):
 	if Engine.is_editor_hint():
@@ -70,6 +82,5 @@ func _process(delta):
 			movement_offset = movement_offset.lerp(target_movement_offset, movement_bias_smoothing)
 			global_position = global_position.lerp(target.global_position + movement_offset, camera_smoothing)
 		if trauma:
-			# print(trauma)
 			trauma = max(trauma - decay * delta, 0)
 			shake()

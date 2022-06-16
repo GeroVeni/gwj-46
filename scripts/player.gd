@@ -25,9 +25,9 @@ var dashing_ready: = true
 
 var global_cooldown: = 1.0
 
-var attack_1_cooldown: = 5.0
 var attack_1: = false
-var attack_1_range: = 300.0
+@export var attack_1_cooldown: = 5.0
+@export var attack_1_range: = 300.0
 
 var attack_2: = false
 var attack_2_shards: = {
@@ -43,7 +43,6 @@ func attacking() -> bool:
 	return attack_1 || attack_2 || attack_3
 
 func on_attack_finish():
-	print("attack finished")
 	attack_1 = false
 
 func _ready():
@@ -60,13 +59,11 @@ func _ready():
 func on_dash_ended():
 	dash_timer.stop()
 	dashing = false
-	print("dash cd started")
 	dash_cooldown_timer.start(dash_cooldown)
 
 func on_dash_cooldown_ended():
 	dash_cooldown_timer.stop()
 	dashing_ready = true
-	print("dash ready")
 
 func get_attack_2_orb_count(elapsed_time: float) -> int:
 	for shard_count in attack_2_shards:

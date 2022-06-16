@@ -1,13 +1,39 @@
-[gd_scene load_steps=5 format=3 uid="uid://cv1meci1g16oa"]
+[gd_scene load_steps=13 format=3 uid="uid://cv1meci1g16oa"]
 
 [ext_resource type="PackedScene" uid="uid://bces3yyu57psw" path="res://scenes/player.tscn" id="1_5u4og"]
+[ext_resource type="Script" path="res://scripts/game_world.gd" id="1_dn2vl"]
 [ext_resource type="PackedScene" uid="uid://c7xsx3t3f6g04" path="res://scenes/orb.tscn" id="2_4mtcb"]
 [ext_resource type="Script" path="res://scripts/shake_camera.gd" id="3_w71m5"]
+[ext_resource type="PackedScene" uid="uid://bmb8pnijgnk8j" path="res://scenes/wall.tscn" id="4_sduoq"]
+[ext_resource type="PackedScene" uid="uid://j8rt0stha258" path="res://scenes/boss.tscn" id="5_kttar"]
+[ext_resource type="PackedScene" uid="uid://53jpuplspbg8" path="res://scenes/boss_orb.tscn" id="7_6pm2f"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_erw7m"]
 
+[sub_resource type="Gradient" id="Gradient_echn5"]
+colors = PackedColorArray(0.776471, 0.533333, 0.333333, 1, 0.105882, 0.105882, 0.105882, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3v5k5"]
+
+[sub_resource type="NoiseTexture" id="NoiseTexture_yrfdx"]
+color_ramp = SubResource( "Gradient_echn5" )
+noise = SubResource( "FastNoiseLite_3v5k5" )
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xsfud"]
+size = Vector2(1236, 1780)
+
 [node name="GameWorld" type="Node2D"]
-position = Vector2(512, 300)
+position = Vector2(476, 240)
+y_sort_enabled = true
+script = ExtResource( "1_dn2vl" )
+
+[node name="BossOrb" parent="." instance=ExtResource( "7_6pm2f" )]
+position = Vector2(282, -621)
+
+[node name="Boss" parent="." instance=ExtResource( "5_kttar" )]
+position = Vector2(-250, -308)
+scale = Vector2(0.5, 0.5)
+target_path = NodePath("../Player")
 
 [node name="Environment" type="Node2D" parent="."]
 position = Vector2(0, 1)
@@ -20,18 +46,58 @@ rotation = 3.14159
 scale = Vector2(2098.59, -1815.46)
 mesh = SubResource( "BoxMesh_erw7m" )
 
+[node name="Sprite2D" type="Sprite2D" parent="Environment"]
+position = Vector2(30, -9)
+scale = Vector2(4.2, 3.6)
+texture = SubResource( "NoiseTexture_yrfdx" )
+
+[node name="Walls" type="Node2D" parent="Environment"]
+
+[node name="Wall" parent="Environment/Walls" instance=ExtResource( "4_sduoq" )]
+position = Vector2(-1062, -962)
+scale = Vector2(10.5, 25.3)
+
+[node name="Wall2" parent="Environment/Walls" instance=ExtResource( "4_sduoq" )]
+position = Vector2(-1062, -962)
+rotation = -1.5708
+scale = Vector2(10.5, 29.4)
+
+[node name="Wall3" parent="Environment/Walls" instance=ExtResource( "4_sduoq" )]
+position = Vector2(-1062, 928)
+rotation = -1.5708
+scale = Vector2(10.5, 11)
+
+[node name="Wall5" parent="Environment/Walls" instance=ExtResource( "4_sduoq" )]
+position = Vector2(298, 928)
+rotation = -1.5708
+scale = Vector2(10.5, 11)
+
+[node name="Wall4" parent="Environment/Walls" instance=ExtResource( "4_sduoq" )]
+position = Vector2(1128, -962)
+scale = Vector2(10.5, 25.3)
+
+[node name="BossEntry" type="Area2D" parent="Environment"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/BossEntry"]
+position = Vector2(35, 8)
+shape = SubResource( "RectangleShape2D_xsfud" )
+
 [node name="Player" parent="." instance=ExtResource( "1_5u4og" )]
-position = Vector2(113, 206)
+position = Vector2(-27, 1127)
+scale = Vector2(2, 2)
 walk_speed = 200.0
 dash_duration = 0.2
 attack_orb_path = NodePath("../Orb")
 
 [node name="Orb" parent="." instance=ExtResource( "2_4mtcb" )]
-position = Vector2(164, 180)
+position = Vector2(27, 1095)
+scale = Vector2(2, 2)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-26, 1126)
 rotating = true
 current = true
+zoom = Vector2(0.7, 0.7)
 script = ExtResource( "3_w71m5" )
 max_offset = Vector2(0, 0)
 camera_smoothing = 0.2
@@ -40,7 +106,10 @@ movement_bias_smoothing = 0.5
 target_path = NodePath("../Player")
 deadzone_size = Vector2(400, 200)
 deadzone_offset = Vector2(0, 0)
+max_zoom = 1.3
 
 [node name="Line2D" type="Line2D" parent="Camera2D"]
 visible = false
 points = PackedVector2Array(-200, -100, 200, -100, 200, 100, -200, 100, -200, -100)
+
+[connection signal="body_entered" from="Environment/BossEntry" to="." method="_on_boss_entry_body_entered"]

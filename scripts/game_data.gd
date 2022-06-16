@@ -9,5 +9,7 @@ var life_force: float:
 		life_force = clamp(value, 0, max_life_force)
 		life_force_changed.emit(life_force)
 
+var current_boss = null
+
 func _ready():
 	self.life_force = 100

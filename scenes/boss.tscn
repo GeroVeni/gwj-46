@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://j8rt0stha258"]
+
+[ext_resource type="Script" path="res://scripts/boss.gd" id="1_002bq"]
+[ext_resource type="Texture2D" uid="uid://dqdwui0xjal6p" path="res://assets/ra.png" id="1_f7fu5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_br656"]
+radius = 52.0
+height = 298.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_31681"]
+radius = 157.0
+height = 764.0
+
+[node name="Boss" type="CharacterBody2D"]
+script = ExtResource( "1_002bq" )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(20, 323)
+rotation = 1.5708
+shape = SubResource( "CapsuleShape2D_br656" )
+disabled = true
+
+[node name="Ra" type="Sprite2D" parent="."]
+position = Vector2(29, 0)
+texture = ExtResource( "1_f7fu5" )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( "CapsuleShape2D_31681" )
+
+[node name="OrbPosition" type="Position2D" parent="."]
+position = Vector2(0, -420)
+
+[node name="CooldownTimer" type="Timer" parent="."]
+
+[node name="CastingTimer" type="Timer" parent="."]

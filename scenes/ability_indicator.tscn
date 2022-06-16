@@ -1,18 +1,19 @@
 [gd_scene load_steps=3 format=3 uid="uid://djgkrvvr78s2t"]
 
-[ext_resource type="Texture2D" uid="uid://byc2jhopeetux" path="res://icon.png" id="1_mds16"]
+[ext_resource type="Texture2D" uid="uid://dve128a73n7ap" path="res://assets/sprint.png" id="1_endnl"]
 [ext_resource type="Script" path="res://scripts/ability_indicator.gd" id="2_6ouqm"]
 
 [node name="AbilityIndicator" type="TextureProgressBar"]
 anchor_right = 0.062
 anchor_bottom = 0.107
-offset_right = 0.511997
-offset_bottom = -0.200005
+offset_right = -0.487999
+offset_bottom = -0.199997
 value = 60.0
 fill_mode = 4
-texture_under = ExtResource( "1_mds16" )
-texture_progress = ExtResource( "1_mds16" )
-tint_under = Color(0.239216, 0.239216, 0.239216, 1)
+nine_patch_stretch = true
+texture_under = ExtResource( "1_endnl" )
+texture_progress = ExtResource( "1_endnl" )
+tint_under = Color(0.380392, 0.380392, 0.380392, 1)
 script = ExtResource( "2_6ouqm" )
 
 [node name="RemainingTime" type="Label" parent="."]

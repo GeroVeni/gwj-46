@@ -13,6 +13,8 @@ var quat: Quaternion
 var launched: = false
 var direction: Vector2 = Vector2.UP
 
+@onready var game_world = get_parent().get_parent()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
@@ -35,6 +37,14 @@ func _ready():
 func launch(target_position: Vector2):
 	launched = true
 	direction = (target_position - global_position).normalized()
+
+	var gtrans = global_transform
+
+	get_parent().remove_child(self)
+	game_world.add_child(self)
+	set_owner(game_world)
+
+	global_transform = gtrans
 
 
 func _physics_process(delta):

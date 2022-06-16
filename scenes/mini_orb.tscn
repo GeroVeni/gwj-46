@@ -11,6 +11,7 @@ modulate = Color(0.207843, 0.843137, 1, 1)
 collision_layer = 0
 sync_to_physics = false
 script = ExtResource( "1_kbjyv" )
+flight_speed = 2500.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( "CircleShape2D_t0nlg" )

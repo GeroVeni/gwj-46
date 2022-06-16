@@ -12,12 +12,11 @@ var trap_active = 0
 var is_active = 0
 var player_body : Node2D
 
-func _process(delta):
+func _process(_delta):
 	if player_body:
 		if portal_timer.is_stopped():
 			if player_body.velocity == Vector2() and is_active:
 				portal_timer.start(activation_time)
-				print("test")
 			else:
 				portal_timer.stop()
 

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://53jpuplspbg8"]
+
+[ext_resource type="Texture2D" uid="uid://dbkyc2423pwiv" path="res://addons/kenney_particle_pack/circle_05.png" id="1_3sfxa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pkkh2"]
+radius = 91.0055
+
+[node name="BossOrb" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( "CircleShape2D_pkkh2" )
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.996078, 0.752941, 1)
+texture = ExtResource( "1_3sfxa" )
