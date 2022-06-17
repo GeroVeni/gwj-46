@@ -1,11 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://53jpuplspbg8"]
+[gd_scene load_steps=5 format=3 uid="uid://53jpuplspbg8"]
 
 [ext_resource type="Texture2D" uid="uid://dbkyc2423pwiv" path="res://addons/kenney_particle_pack/circle_05.png" id="1_3sfxa"]
+[ext_resource type="Script" path="res://scripts/boss_orb.gd" id="1_wtewy"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_jwfqc"]
+radius = 1.0
+height = 2.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pkkh2"]
 radius = 91.0055
 
 [node name="BossOrb" type="Area2D"]
+script = ExtResource( "1_wtewy" )
+
+[node name="ExplosionIndicatorBackground" type="MeshInstance2D" parent="."]
+visible = false
+modulate = Color(1, 0, 0, 0.12549)
+position = Vector2(0, 6.91414e-05)
+scale = Vector2(350, 350)
+mesh = SubResource( "SphereMesh_jwfqc" )
+
+[node name="ExplosionIndicator" type="MeshInstance2D" parent="."]
+visible = false
+modulate = Color(1, 0, 0, 0.12549)
+position = Vector2(0, 6.91414e-05)
+scale = Vector2(200, 200)
+mesh = SubResource( "SphereMesh_jwfqc" )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( "CircleShape2D_pkkh2" )

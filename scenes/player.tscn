@@ -15,11 +15,7 @@ radius = 25.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource( "1_g2byx" )
-walk_speed = 600.0
-dash_speed = 2000.0
-dash_duration = 0.3
 shield_path = NodePath("Shield")
-attack_1_range = 600.0
 
 [node name="Shield" type="Area2D" parent="."]
 visible = false

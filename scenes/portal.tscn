@@ -1,10 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bpanm7fok0gg"]
 
 [ext_resource type="Script" path="res://scripts/portal.gd" id="1_pchcj"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_qujkg"]
-radius = 35.0
-height = 70.0
+[ext_resource type="Texture2D" uid="uid://05mmgik321vb" path="res://assets/portal.png" id="2_fy3vp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k8lra"]
 radius = 35.0
@@ -12,13 +9,15 @@ radius = 35.0
 [node name="Portal" type="Area2D"]
 script = ExtResource( "1_pchcj" )
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-mesh = SubResource( "SphereMesh_qujkg" )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( "CircleShape2D_k8lra" )
 
 [node name="PortalTimer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(0.3125, 0.3125)
+texture = ExtResource( "2_fy3vp" )
 
 [connection signal="body_entered" from="." to="." method="_on_portal_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_portal_body_exited"]

@@ -5,19 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://d0df3riprcma5" path="res://scenes/Shaked_camera.tscn" id="3_ku3ur"]
 [ext_resource type="PackedScene" uid="uid://bmb8pnijgnk8j" path="res://scenes/wall.tscn" id="4_6dpf7"]
 [ext_resource type="PackedScene" uid="uid://c4ad4hqklqyib" path="res://scenes/spikes.tscn" id="5_2t673"]
-[ext_resource type="PackedScene" uid="uid://67bq74oiyi7j" path="res://scenes/portal.tscn" id="6_fy1hi"]
+[ext_resource type="PackedScene" uid="uid://bpanm7fok0gg" path="res://scenes/portal.tscn" id="6_fy1hi"]
 [ext_resource type="Texture2D" uid="uid://sro5eoo7y4yx" path="res://assets/maze_texture.jpg" id="7_0ir0j"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(-12, 161)
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-modulate = Color(0.776471, 0.533333, 0.333333, 1)
-position = Vector2(544, 490)
-rotation = 3.14159
-scale = Vector2(2098.59, -1815.46)
-z_index = -4096
-mesh = SubResource( "BoxMesh_f1a5y" )
 
 [node name="Player" parent="." instance=ExtResource( "1_rmpcw" )]
 position = Vector2(-102, 13)
@@ -27,6 +19,7 @@ attack_orb_path = NodePath("../Orb")
 position = Vector2(-8, -1)
 
 [node name="Camera2D" parent="." instance=ExtResource( "3_ku3ur" )]
+target_path = NodePath("../Player")
 
 [node name="Portals" type="Node2D" parent="."]
 

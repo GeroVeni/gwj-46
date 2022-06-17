@@ -15,12 +15,13 @@ run/main_scene="res://scenes/main.tscn"
 config/icon="res://icon.png"
 config/features=PackedStringArray("4.0", "Vulkan Mobile")
 
-[filesystem]
-
-import/blender/enabled=false
 [autoload]
 
 GameData="*res://scenes/game_data.tscn"
+
+[filesystem]
+
+import/blender/enabled=false
 
 [input]
 

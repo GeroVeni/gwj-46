@@ -6,6 +6,12 @@
 position = Vector2(-71, 38)
 rotating = true
 current = true
+zoom = Vector2(1.4, 1.4)
 script = ExtResource( "1_da3yr" )
 max_offset = Vector2(20, 15)
-target = NodePath("../Player")
+target_path = NodePath("")
+deadzone_size = Vector2(0, 0)
+deadzone_offset = Vector2(0, 0)
+start_zoom = 1.4
+min_zoom = 0.8
+max_zoom = 8.0

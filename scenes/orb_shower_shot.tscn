@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://h8lj7wp6uxyg"]
+
+[ext_resource type="Script" path="res://scripts/orb_shower_shot.gd" id="1_kqwso"]
+[ext_resource type="Texture2D" uid="uid://dhbm42q84bsvc" path="res://assets/Mini_orb_1.png" id="2_21xb2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uxbg8"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_wg5hy"]
+radius = 1.0
+height = 2.0
+
+[node name="OrbShowerShot" type="Node2D"]
+script = ExtResource( "1_kqwso" )
+
+[node name="DamageArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+scale = Vector2(20, 20)
+shape = SubResource( "CircleShape2D_uxbg8" )
+
+[node name="FallIndicatorBackground" type="MeshInstance2D" parent="."]
+modulate = Color(1, 0, 0, 0.12549)
+position = Vector2(0, 0.00038147)
+scale = Vector2(200, 200)
+mesh = SubResource( "SphereMesh_wg5hy" )
+
+[node name="FallIndicator" type="MeshInstance2D" parent="."]
+modulate = Color(1, 0, 0, 0.12549)
+position = Vector2(0, 0.00038147)
+scale = Vector2(100, 100)
+mesh = SubResource( "SphereMesh_wg5hy" )
+
+[node name="OrbShot" type="Sprite2D" parent="."]
+modulate = Color(2, 2, 2, 1)
+position = Vector2(-2, -1)
+scale = Vector2(0.228792, 0.228792)
+texture = ExtResource( "2_21xb2" )
+
+[node name="FallDirection" type="Position2D" parent="."]
+position = Vector2(259, -658)

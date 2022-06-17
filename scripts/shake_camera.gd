@@ -7,10 +7,12 @@ extends Camera2D
 @export var max_offset = Vector2(100, 75)  # Maximum hor/ver shake in pixels.
 @export var max_roll = 0.1  # Maximum rotation in radians (use sparingly).
 
-@export var camera_smoothing: = 0.1
+@export var camera_smoothing: = 0.02
 @export var movement_bias: = 30.0
 @export var movement_bias_smoothing: = 0.1
 @export var target_path: NodePath  # Assign the node this camera will follow.
+
+@export var lookahead_bias: = 50.0
 
 @export var deadzone_size: Vector2
 @export var deadzone_offset: Vector2
@@ -80,7 +82,9 @@ func _process(delta):
 			if target.velocity:
 				target_movement_offset = target.velocity.normalized() * movement_bias
 			movement_offset = movement_offset.lerp(target_movement_offset, movement_bias_smoothing)
-			global_position = global_position.lerp(target.global_position + movement_offset, camera_smoothing)
+
+			var lookahead_offset = lookahead_bias * (get_global_mouse_position() - target.global_position).normalized()
+			global_position = global_position.lerp(target.global_position + movement_offset + lookahead_offset, camera_smoothing)
 		if trauma:
 			trauma = max(trauma - decay * delta, 0)
 			shake()

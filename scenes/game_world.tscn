@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cv1meci1g16oa"]
+[gd_scene load_steps=13 format=3 uid="uid://cv1meci1g16oa"]
 
 [ext_resource type="PackedScene" uid="uid://bces3yyu57psw" path="res://scenes/player.tscn" id="1_5u4og"]
 [ext_resource type="Script" path="res://scripts/game_world.gd" id="1_dn2vl"]
 [ext_resource type="PackedScene" uid="uid://c7xsx3t3f6g04" path="res://scenes/orb.tscn" id="2_4mtcb"]
 [ext_resource type="PackedScene" uid="uid://d0df3riprcma5" path="res://scenes/Shaked_camera.tscn" id="3_ppprb"]
-[ext_resource type="PackedScene" uid="uid://brrv2hiq6alur" path="res://scenes/mummy.tscn" id="5_3ed0t"]
+[ext_resource type="PackedScene" uid="uid://j8rt0stha258" path="res://scenes/boss.tscn" id="6_0qx22"]
+[ext_resource type="PackedScene" uid="uid://53jpuplspbg8" path="res://scenes/boss_orb.tscn" id="7_6pm2f"]
+[ext_resource type="PackedScene" uid="uid://h8lj7wp6uxyg" path="res://scenes/orb_shower_shot.tscn" id="7_100li"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_erw7m"]
 
@@ -22,15 +24,15 @@ size = Vector2(1236, 1780)
 
 [node name="GameWorld" type="Node2D"]
 position = Vector2(476, 240)
+z_index = -2
 y_sort_enabled = true
 script = ExtResource( "1_dn2vl" )
 
 [node name="BossOrb" parent="." instance=ExtResource( "7_6pm2f" )]
-position = Vector2(282, -621)
+position = Vector2(-794, -450)
 
-[node name="Boss" parent="." instance=ExtResource( "5_kttar" )]
-position = Vector2(-250, -308)
-scale = Vector2(0.5, 0.5)
+[node name="Boss" parent="." instance=ExtResource( "6_0qx22" )]
+position = Vector2(-794, -189)
 target_path = NodePath("../Player")
 
 [node name="Environment" type="Node2D" parent="."]
@@ -38,7 +40,7 @@ position = Vector2(0, 1)
 z_index = -10
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Environment"]
-modulate = Color(0.776471, 0.533333, 0.333333, 1)
+modulate = Color(7.8, 0.53, 0.33, 1)
 position = Vector2(29, -11)
 rotation = 3.14159
 scale = Vector2(2098.59, -1815.46)
@@ -49,31 +51,6 @@ position = Vector2(30, -9)
 scale = Vector2(4.2, 3.6)
 texture = SubResource( "NoiseTexture_yrfdx" )
 
-[node name="Walls" type="Node2D" parent="Environment"]
-
-[node name="Wall" parent="Environment/Walls" instance=ExtResource( "4_sduoq" )]
-position = Vector2(-1062, -962)
-scale = Vector2(10.5, 25.3)
-
-[node name="Wall2" parent="Environment/Walls" instance=ExtResource( "4_sduoq" )]
-position = Vector2(-1062, -962)
-rotation = -1.5708
-scale = Vector2(10.5, 29.4)
-
-[node name="Wall3" parent="Environment/Walls" instance=ExtResource( "4_sduoq" )]
-position = Vector2(-1062, 928)
-rotation = -1.5708
-scale = Vector2(10.5, 11)
-
-[node name="Wall5" parent="Environment/Walls" instance=ExtResource( "4_sduoq" )]
-position = Vector2(298, 928)
-rotation = -1.5708
-scale = Vector2(10.5, 11)
-
-[node name="Wall4" parent="Environment/Walls" instance=ExtResource( "4_sduoq" )]
-position = Vector2(1128, -962)
-scale = Vector2(10.5, 25.3)
-
 [node name="BossEntry" type="Area2D" parent="Environment"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/BossEntry"]
@@ -81,21 +58,18 @@ position = Vector2(35, 8)
 shape = SubResource( "RectangleShape2D_xsfud" )
 
 [node name="Player" parent="." instance=ExtResource( "1_5u4og" )]
-position = Vector2(-27, 1127)
-scale = Vector2(2, 2)
-walk_speed = 200.0
-dash_duration = 0.2
+position = Vector2(-13, -172)
 attack_orb_path = NodePath("../Orb")
 
 [node name="Orb" parent="." instance=ExtResource( "2_4mtcb" )]
-position = Vector2(27, 1095)
-scale = Vector2(2, 2)
+position = Vector2(41, -204)
 
 [node name="Camera2D" parent="." instance=ExtResource( "3_ppprb" )]
+position = Vector2(19, -148)
+target_path = NodePath("../Player")
 
-[node name="mummy4" parent="." instance=ExtResource( "5_3ed0t" )]
-position = Vector2(-112, -171)
-charge_duration = 0.5
-player_path = NodePath("../Player")
+[node name="OrbShowerShot" parent="." instance=ExtResource( "7_100li" )]
+position = Vector2(-122, -595)
+fall_indicator_visible = true
 
 [connection signal="body_entered" from="Environment/BossEntry" to="." method="_on_boss_entry_body_entered"]
