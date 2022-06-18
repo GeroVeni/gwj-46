@@ -1,15 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://c08pywawy6i5v"]
+[gd_scene load_steps=9 format=3 uid="uid://c08pywawy6i5v"]
 
 [ext_resource type="PackedScene" uid="uid://bmb8pnijgnk8j" path="res://scenes/wall.tscn" id="1_ltsbo"]
 [ext_resource type="PackedScene" uid="uid://bces3yyu57psw" path="res://scenes/player.tscn" id="2_di2ag"]
 [ext_resource type="PackedScene" uid="uid://c7xsx3t3f6g04" path="res://scenes/orb.tscn" id="3_i4mxv"]
 [ext_resource type="PackedScene" uid="uid://d0df3riprcma5" path="res://scenes/Shaked_camera.tscn" id="4_tu0dg"]
 [ext_resource type="Texture2D" uid="uid://18tn156i0x5w" path="res://assets/Sand_texture.jpg" id="5_d32rr"]
+[ext_resource type="PackedScene" uid="uid://c4ad4hqklqyib" path="res://scenes/spikes.tscn" id="6_myc8s"]
+[ext_resource type="PackedScene" uid="uid://brrv2hiq6alur" path="res://scenes/mummy.tscn" id="7_nxyt7"]
+[ext_resource type="PackedScene" uid="uid://bpanm7fok0gg" path="res://scenes/portal.tscn" id="8_7roqu"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(-151, -4)
+scale = Vector2(0.8, 0.8)
 
 [node name="Sands" type="Node2D" parent="."]
+visible = false
 z_index = -4096
 
 [node name="SandTexture" type="Sprite2D" parent="Sands"]
@@ -28,11 +33,6 @@ scale = Vector2(0.441176, 0.344669)
 texture = ExtResource( "5_d32rr" )
 
 [node name="SandTexture4" type="Sprite2D" parent="Sands"]
-position = Vector2(92, -165.5)
-scale = Vector2(0.441176, 0.344669)
-texture = ExtResource( "5_d32rr" )
-
-[node name="SandTexture5" type="Sprite2D" parent="Sands"]
 position = Vector2(92, -165.5)
 scale = Vector2(0.441176, 0.344669)
 texture = ExtResource( "5_d32rr" )
@@ -135,20 +135,12 @@ scale = Vector2(1, 20)
 position = Vector2(5358, -2476)
 scale = Vector2(1, 20)
 
-[node name="Wall12" parent="Walls" instance=ExtResource( "1_ltsbo" )]
-position = Vector2(5354, -3952)
-scale = Vector2(1, 20)
-
 [node name="Wall14" parent="Walls" instance=ExtResource( "1_ltsbo" )]
-position = Vector2(3898, -4915)
-scale = Vector2(1, 20)
-
-[node name="Wall13" parent="Walls" instance=ExtResource( "1_ltsbo" )]
-position = Vector2(3896, -3821)
+position = Vector2(3904.67, -3816.67)
 scale = Vector2(1, 20)
 
 [node name="Wall15" parent="Walls" instance=ExtResource( "1_ltsbo" )]
-position = Vector2(5352, -4915)
+position = Vector2(5358.67, -3816.67)
 scale = Vector2(1, 20)
 
 [node name="Wall4" parent="Walls" instance=ExtResource( "1_ltsbo" )]
@@ -167,14 +159,14 @@ rotation = -1.5708
 scale = Vector2(1, 20)
 
 [node name="Wall17" parent="Walls" instance=ExtResource( "1_ltsbo" )]
-position = Vector2(2403, -4925)
+position = Vector2(3155, -3816.67)
 rotation = -1.5708
-scale = Vector2(1, 20)
+scale = Vector2(1, 10)
 
 [node name="Wall21" parent="Walls" instance=ExtResource( "1_ltsbo" )]
-position = Vector2(5360, -4925)
+position = Vector2(5358.33, -3816.67)
 rotation = -1.5708
-scale = Vector2(1, 20)
+scale = Vector2(1, 10.6)
 
 [node name="Wall9" parent="Walls" instance=ExtResource( "1_ltsbo" )]
 position = Vector2(2394, -2322)
@@ -191,34 +183,21 @@ position = Vector2(-598, -2322)
 rotation = -1.5708
 scale = Vector2(1, 20)
 
-[node name="Wall18" parent="Walls" instance=ExtResource( "1_ltsbo" )]
-position = Vector2(2485.33, -6273.33)
-scale = Vector2(1, 20)
-
 [node name="Wall19" parent="Walls" instance=ExtResource( "1_ltsbo" )]
-position = Vector2(2485.33, -7773.33)
-scale = Vector2(1, 20)
-
-[node name="Wall23" parent="Walls" instance=ExtResource( "1_ltsbo" )]
-position = Vector2(6882.67, -6422.33)
+position = Vector2(3156.67, -5315)
 scale = Vector2(1, 20)
 
 [node name="Wall24" parent="Walls" instance=ExtResource( "1_ltsbo" )]
-position = Vector2(6882.67, -7773.33)
+position = Vector2(6155, -5315)
 scale = Vector2(1, 20)
 
 [node name="Wall25" parent="Walls" instance=ExtResource( "1_ltsbo" )]
-position = Vector2(4009, -7783)
+position = Vector2(4660, -5315)
 rotation = -1.5708
 scale = Vector2(1, 20)
 
 [node name="Wall26" parent="Walls" instance=ExtResource( "1_ltsbo" )]
-position = Vector2(2501, -7783)
-rotation = -1.5708
-scale = Vector2(1, 20)
-
-[node name="Wall28" parent="Walls" instance=ExtResource( "1_ltsbo" )]
-position = Vector2(5514, -7783)
+position = Vector2(3161.67, -5315)
 rotation = -1.5708
 scale = Vector2(1, 20)
 
@@ -228,10 +207,213 @@ rotation = 1.57148
 scale = Vector2(1, 20)
 
 [node name="Player" parent="." instance=ExtResource( "2_di2ag" )]
-position = Vector2(132, 230)
 attack_orb_path = NodePath("../Orb")
 
 [node name="Orb" parent="." instance=ExtResource( "3_i4mxv" )]
-position = Vector2(182, 205)
+position = Vector2(50, -25)
 
 [node name="Camera2D" parent="." instance=ExtResource( "4_tu0dg" )]
+target_path = NodePath("../Player")
+
+[node name="Spikes" type="Node2D" parent="."]
+
+[node name="Spikes" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(-411.25, -410)
+rotation = 1.5708
+
+[node name="Spikes2" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(-340, -410)
+rotation = 1.5708
+
+[node name="Spikes3" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(-162.5, -411.25)
+rotation = 1.5708
+
+[node name="Spikes4" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(-58.75, -277.5)
+rotation = 1.5708
+
+[node name="Spikes5" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(72.5, -376.25)
+rotation = 1.5708
+
+[node name="Spikes6" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(282.5, -263.75)
+rotation = 1.5708
+
+[node name="Spikes7" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(208.75, -461.25)
+rotation = 1.5708
+
+[node name="Spikes19" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(-71.25, -562.5)
+rotation = 1.5708
+
+[node name="Spikes20" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(7.49997, -563.75)
+rotation = 1.5708
+
+[node name="Spikes21" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(-280, -592.5)
+rotation = 1.5708
+
+[node name="Spikes22" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(-351.25, -593.75)
+rotation = 1.5708
+
+[node name="Spikes23" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(-100, -700)
+rotation = 1.5708
+
+[node name="Spikes24" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(-173.75, -698.75)
+rotation = 1.5708
+
+[node name="Spikes25" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(-71.25, -918.75)
+rotation = 1.5708
+
+[node name="Spikes26" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(-71.25, -992.5)
+rotation = 1.5708
+
+[node name="Spikes27" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(-71.25, -1063.75)
+rotation = 1.5708
+
+[node name="Spikes38" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(150, -1700)
+rotation = 1.5708
+
+[node name="Spikes28" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(61.25, -1198.75)
+rotation = 1.5708
+
+[node name="Spikes29" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(61.25, -1272.5)
+rotation = 1.5708
+
+[node name="Spikes39" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(-337.5, -766.25)
+rotation = 1.5708
+
+[node name="Spikes40" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(523.75, -531.25)
+rotation = 1.5708
+
+[node name="Spikes41" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(595, -531.25)
+rotation = 1.5708
+
+[node name="Spikes42" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(225, -1702.5)
+rotation = 1.5708
+
+[node name="Spikes43" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(225, -1702.5)
+rotation = 1.5708
+
+[node name="Spikes30" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(131.25, -775)
+rotation = 1.5708
+
+[node name="Spikes31" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(128.75, -847.5)
+rotation = 1.5708
+
+[node name="Spikes32" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(-316.25, -1310)
+rotation = 1.5708
+
+[node name="Spikes33" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(-316.25, -1382.5)
+rotation = 1.5708
+
+[node name="Spikes34" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(-263.75, -1041.25)
+rotation = 1.5708
+
+[node name="Spikes35" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(127.5, -1470)
+rotation = 1.5708
+
+[node name="Spikes36" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(-173.75, -1595)
+rotation = 1.5708
+
+[node name="Spikes37" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(250, -647.5)
+rotation = 1.5708
+
+[node name="Spikes8" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(281.25, -461.25)
+rotation = 1.5708
+
+[node name="Spikes9" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(431.25, -346.25)
+rotation = 1.5708
+
+[node name="Spikes10" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(503.75, -347.5)
+rotation = 1.5708
+
+[node name="Spikes11" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(596.25, -460)
+rotation = 1.5708
+
+[node name="Spikes12" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(522.5, -756.25)
+rotation = 1.5708
+scale = Vector2(3, 3)
+
+[node name="Spikes13" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(522.5, -973.75)
+rotation = 1.5708
+scale = Vector2(3, 3)
+
+[node name="Spikes14" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(521.25, -1191.25)
+rotation = 1.5708
+scale = Vector2(3, 3)
+
+[node name="Spikes15" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(521.25, -1407.5)
+rotation = 1.5708
+scale = Vector2(3, 3)
+
+[node name="Spikes16" parent="Spikes" instance=ExtResource( "6_myc8s" )]
+position = Vector2(520, -1623.75)
+rotation = 1.5708
+scale = Vector2(3, 3)
+
+[node name="Mummies" type="Node2D" parent="."]
+
+[node name="mummy" parent="." instance=ExtResource( "7_nxyt7" )]
+position = Vector2(3497.5, -3730)
+player_path = NodePath("../Player")
+
+[node name="Portals" type="Node2D" parent="."]
+
+[node name="EntryPortal_a" parent="Portals" instance=ExtResource( "8_7roqu" )]
+position = Vector2(1072.5, -1263.75)
+is_entry = 1
+exit_portal_path = NodePath("../ExitPortall_a")
+
+[node name="ExitPortall_a" parent="Portals" instance=ExtResource( "8_7roqu" )]
+position = Vector2(1492.5, -978.75)
+
+[node name="EntryPortal_b" parent="Portals" instance=ExtResource( "8_7roqu" )]
+position = Vector2(1681.25, -1405)
+is_entry = 1
+exit_portal_path = NodePath("../ExitPortal_b")
+
+[node name="ExitPortal_b" parent="Portals" instance=ExtResource( "8_7roqu" )]
+position = Vector2(2008.75, -1405)
+
+[node name="EntryPortal_c" parent="Portals" instance=ExtResource( "8_7roqu" )]
+position = Vector2(2297.5, -1228.75)
+is_entry = 1
+exit_portal_path = NodePath("../ExitPortal_c")
+
+[node name="ExitPortal_c" parent="Portals" instance=ExtResource( "8_7roqu" )]
+position = Vector2(2858.75, -1405)

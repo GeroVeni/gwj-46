@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwg8svl7ormj3"]
+[gd_scene load_steps=10 format=3 uid="uid://bwg8svl7ormj3"]
 
 [ext_resource type="PackedScene" uid="uid://bces3yyu57psw" path="res://scenes/player.tscn" id="1_rmpcw"]
 [ext_resource type="PackedScene" uid="uid://c7xsx3t3f6g04" path="res://scenes/orb.tscn" id="2_6bu36"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://c4ad4hqklqyib" path="res://scenes/spikes.tscn" id="5_2t673"]
 [ext_resource type="PackedScene" uid="uid://bpanm7fok0gg" path="res://scenes/portal.tscn" id="6_fy1hi"]
 [ext_resource type="Texture2D" uid="uid://sro5eoo7y4yx" path="res://assets/maze_texture.jpg" id="7_0ir0j"]
+[ext_resource type="PackedScene" uid="uid://cwqea33qmdiff" path="res://scenes/artifact.tscn" id="8_hg1ja"]
+[ext_resource type="PackedScene" uid="uid://cec4kahr2debb" path="res://scenes/healing_artifact.tscn" id="9_p8icg"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(-12, 161)
@@ -53,7 +55,7 @@ rotation = 1.57116
 position = Vector2(780, 939)
 rotation = 1.57116
 
-[node name="Spikes" type="Node2D" parent="."]
+[node name="Spikes" type="Area2D" parent="."]
 
 [node name="Spikes" parent="Spikes" instance=ExtResource( "5_2t673" )]
 position = Vector2(113, 189)
@@ -99,7 +101,13 @@ rotation = 1.57116
 position = Vector2(1007, 637)
 rotation = 1.57116
 
-[node name="Walls" type="Node2D" parent="."]
+[node name="Wall" parent="." instance=ExtResource( "4_6dpf7" )]
+position = Vector2(75, -1.86265e-09)
+rotation = 1.57116
+
+[node name="Exit_wall" parent="." instance=ExtResource( "4_6dpf7" )]
+position = Vector2(971, 1123)
+rotation = 1.57116
 
 [node name="Wall" parent="Walls" instance=ExtResource( "4_6dpf7" )]
 position = Vector2(75, 0)
@@ -242,8 +250,8 @@ rotation = 1.57116
 position = Vector2(597, 1123)
 rotation = 1.57116
 
-[node name="Wall56" parent="Walls" instance=ExtResource( "4_6dpf7" )]
-position = Vector2(1045, 1123)
+[node name="Wall56" parent="." instance=ExtResource( "4_6dpf7" )]
+position = Vector2(1046, 1123)
 rotation = 1.57116
 
 [node name="Wall62" parent="Walls" instance=ExtResource( "4_6dpf7" )]
@@ -978,10 +986,7 @@ position = Vector2(598, 450)
 [node name="Wall569" parent="Walls" instance=ExtResource( "4_6dpf7" )]
 position = Vector2(598, 675)
 
-[node name="Wall571" parent="Walls" instance=ExtResource( "4_6dpf7" )]
-position = Vector2(598, 829)
-
-[node name="Wall573" parent="Walls" instance=ExtResource( "4_6dpf7" )]
+[node name="Wall573" parent="." instance=ExtResource( "4_6dpf7" )]
 position = Vector2(599, 151)
 
 [node name="Wall546" parent="Walls" instance=ExtResource( "4_6dpf7" )]
@@ -1105,7 +1110,16 @@ position = Vector2(75, 524)
 position = Vector2(75, 149)
 
 [node name="MazeTexture" type="Sprite2D" parent="."]
-position = Vector2(591, 562)
+visible = false
+position = Vector2(585, 733)
 scale = Vector2(1.22534, 1.62267)
 z_index = -4096
 texture = ExtResource( "7_0ir0j" )
+
+[node name="Artifact" parent="." instance=ExtResource( "8_hg1ja" )]
+position = Vector2(635, 937)
+exit_wall_path = NodePath("../Exit_wall")
+
+[node name="healing_artifact" parent="." instance=ExtResource( "9_p8icg" )]
+position = Vector2(-178, 68)
+player_body_path = NodePath("../Player")

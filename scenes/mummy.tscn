@@ -1,15 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://brrv2hiq6alur"]
+[gd_scene load_steps=11 format=3 uid="uid://brrv2hiq6alur"]
 
 [ext_resource type="Script" path="res://scripts/mummy.gd" id="1_p33jf"]
+[ext_resource type="Texture2D" uid="uid://cw3t4sk0j4mbt" path="res://assets/Mummy/mummy_flying.png" id="2_6qc0a"]
+[ext_resource type="Texture2D" uid="uid://ob6t28acbxe8" path="res://assets/Mummy/mummy_walking_3.png" id="2_gytup"]
+[ext_resource type="Texture2D" uid="uid://c0vm2hk87hvhw" path="res://assets/Mummy/mummy_walking_1.png" id="2_n8k3m"]
+[ext_resource type="Texture2D" uid="uid://ca2t5p7mrbsjn" path="res://assets/Mummy/mummy_walking_2.png" id="3_fiued"]
+[ext_resource type="Texture2D" uid="uid://ttx15qdko1cu" path="res://assets/Mummy/windup.png" id="6_r4ecm"]
+[ext_resource type="Texture2D" uid="uid://cmsf3hx8ybnqd" path="res://assets/Mummy/mummy_sleep.png" id="7_lg1hl"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_i1vdw"]
-radius = 20.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0n28e"]
+radius = 6.0
+height = 78.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_ws6t7"]
 radius = 20.0
 height = 40.0
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_uyaxi"]
+animations = [{
+"frames": [ExtResource( "2_6qc0a" )],
+"loop": true,
+"name": &"Charging",
+"speed": 5.0
+}, {
+"frames": [ExtResource( "2_gytup" ), ExtResource( "3_fiued" ), ExtResource( "2_n8k3m" )],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}, {
+"frames": [ExtResource( "6_r4ecm" )],
+"loop": true,
+"name": &"Preparing",
+"speed": 5.0
+}, {
+"frames": [ExtResource( "7_lg1hl" )],
+"loop": true,
+"name": &"Dead",
+"speed": 5.0
+}]
+
 [node name="mummy" type="CharacterBody2D"]
+scale = Vector2(1.2, 1.2)
 script = ExtResource( "1_p33jf" )
 speed = 75.0
 charge_duration = 0.15
@@ -17,7 +48,7 @@ charge_duration = 0.15
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 modulate = Color(0.92549, 0.0705882, 0.196078, 1)
 self_modulate = Color(1, 0.0862745, 0.0941176, 1)
-shape = SubResource( "CircleShape2D_i1vdw" )
+shape = SubResource( "CapsuleShape2D_0n28e" )
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 visible = false
@@ -30,3 +61,10 @@ mesh = SubResource( "SphereMesh_ws6t7" )
 [node name="charge_windup_timer" type="Timer" parent="."]
 
 [node name="attack_cooldown_timer" type="Timer" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(27, 4)
+scale = Vector2(0.09, 0.09)
+frames = SubResource( "SpriteFrames_uyaxi" )
+animation = &"Walking"
+playing = true

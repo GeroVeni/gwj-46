@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cec4kahr2debb"]
+
+[ext_resource type="Script" path="res://scripts/healing_artifact.gd" id="1_jkoc1"]
+[ext_resource type="Texture2D" uid="uid://dhgcj1h4pu03v" path="res://assets/Healing_artifact.png" id="1_vcbdc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_66qxl"]
+animations = [{
+"frames": [ExtResource( "1_vcbdc" )],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ao43x"]
+radius = 15.0
+height = 70.0
+
+[node name="healing_artifact" type="Area2D"]
+script = ExtResource( "1_jkoc1" )
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(6, 6)
+scale = Vector2(0.12, 0.12)
+frames = SubResource( "SpriteFrames_66qxl" )
+
+[node name="Respawn_timer" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource( "CapsuleShape2D_ao43x" )
+
+[connection signal="body_entered" from="." to="." method="_on_healing_artifact_body_entered"]
+[connection signal="timeout" from="Respawn_timer" to="." method="_on_respawn_timer_timeout"]

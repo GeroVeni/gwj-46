@@ -1,11 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4ad4hqklqyib"]
+[gd_scene load_steps=7 format=3 uid="uid://c4ad4hqklqyib"]
 
 [ext_resource type="Script" path="res://scripts/spikes.gd" id="1_88r4j"]
+[ext_resource type="Texture2D" uid="uid://dihkuokl51nu" path="res://assets/trap_spikes/spikes_low.png" id="2_f2vjh"]
+[ext_resource type="Texture2D" uid="uid://d34q2o7ixqfgc" path="res://assets/trap_spikes/spikes_mid.png" id="3_7o7kf"]
+[ext_resource type="Texture2D" uid="uid://y2e7jlg4dgqf" path="res://assets/trap_spikes/spikes_up.png" id="4_ab6s2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cv8g7"]
 size = Vector2(70, 70)
 
-[sub_resource type="QuadMesh" id="QuadMesh_qt3kt"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_pbyv7"]
+animations = [{
+"frames": [ExtResource( "2_f2vjh" )],
+"loop": true,
+"name": &"spikes_down",
+"speed": 5.0
+}, {
+"frames": [ExtResource( "3_7o7kf" )],
+"loop": true,
+"name": &"spikes_mid",
+"speed": 5.0
+}, {
+"frames": [ExtResource( "4_ab6s2" )],
+"loop": true,
+"name": &"spikes_up",
+"speed": 5.0
+}]
 
 [node name="Spikes" type="Area2D"]
 monitorable = false
@@ -14,12 +33,14 @@ script = ExtResource( "1_88r4j" )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( "RectangleShape2D_cv8g7" )
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-scale = Vector2(70, 70)
-z_index = -2
-mesh = SubResource( "QuadMesh_qt3kt" )
-
 [node name="TrapTimer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, 8)
+rotation = -1.5708
+scale = Vector2(0.425714, 0.405714)
+frames = SubResource( "SpriteFrames_pbyv7" )
+animation = &"spikes_mid"
 
 [connection signal="body_entered" from="." to="." method="_on_spikes_body_entered"]
 [connection signal="timeout" from="TrapTimer" to="." method="_on_trap_timer_timeout"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwqea33qmdiff"]
+
+[ext_resource type="Texture2D" uid="uid://dgkimhajoq8kc" path="res://assets/eye_of_ra.png" id="1_0pisv"]
+[ext_resource type="Script" path="res://scripts/artifact.gd" id="1_ks0ta"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0vs0j"]
+radius = 30.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_81kxq"]
+animations = [{
+"frames": [ExtResource( "1_0pisv" )],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Artifact" type="Area2D"]
+script = ExtResource( "1_ks0ta" )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( "CircleShape2D_0vs0j" )
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4.47035e-08, 0)
+scale = Vector2(0.1195, 0.116625)
+frames = SubResource( "SpriteFrames_81kxq" )
+
+[connection signal="body_entered" from="." to="." method="_on_artifact_body_entered"]

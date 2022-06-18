@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+@onready var my_animation = $AnimatedSprite2D
 @export var speed: = 200.0
 @export var speed_modifier: = 1.0
 @export var charge_multiplier: = 7.0
@@ -14,11 +14,18 @@ extends CharacterBody2D
 var direction: = Vector2()
 var charging = 0
 var attacking = 0
-var active = 0
+@export var active = 0
 var distance_from_player = 0.0
 var preparing = 0
 var off_cooldown = 1
 
+func mummy_direction(direction_x):
+	if direction_x >= 0 and my_animation.scale.x > 0:
+		my_animation.scale.x *= (- 1)
+		my_animation.position.x *= (-1)
+	if direction_x < 0 and my_animation.scale.x < 0:
+		my_animation.scale.x *= (- 1)	
+		my_animation.position.x *= (-1)
 func windup():
 	$MeshInstance2D.modulate = Color(0, 0, 0)
 	off_cooldown = 0
@@ -27,7 +34,8 @@ func windup():
 	$charge_windup_timer.start(charge_windup)
 	direction = (player.global_position - global_position).normalized()
 	velocity = speed_modifier * speed * direction
-
+	mummy_direction(direction.x)	
+	my_animation.play("Preparing")
 	
 func charge():
 	$MeshInstance2D.modulate = Color(0, 0 , 1)
@@ -37,7 +45,8 @@ func charge():
 	$charge_duration_timer.start(charge_duration)
 	speed_modifier = charge_multiplier
 	velocity = speed_modifier * speed * direction
-	
+	mummy_direction(direction.x)
+	my_animation.play("Charging")
 	
 func just_charged():
 	charging = 0
@@ -55,6 +64,8 @@ func _ready():
 	
 func _physics_process(_delta):
 	if !charging and !preparing:
+		mummy_direction(direction.x)
+		my_animation.play("Walking")
 		$MeshInstance2D.modulate = Color(1, 0 , 0)		
 		direction = (player.global_position - global_position).normalized()
 		velocity = speed_modifier * speed * direction

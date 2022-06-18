@@ -11,6 +11,8 @@ b = Vector2(0, 75)
 shape = SubResource( "SegmentShape2D_rojhc" )
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0.160784, 0.027451, 0.00392157, 1)
+self_modulate = Color(0.121569, 0.0784314, 0, 1)
 position = Vector2(0, 37.25)
-scale = Vector2(4, 75.5)
+scale = Vector2(5, 75)
 mesh = SubResource( "BoxMesh_ookuq" )
